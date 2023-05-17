@@ -43,5 +43,5 @@ app.get("/signup_user",async (req,res)=>{
 })
 
 app.listen(port,hostname,()=>{
-console.log("congratulations")
+console.log("Server is Running!")
 })
