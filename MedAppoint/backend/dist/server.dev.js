@@ -6,14 +6,17 @@ var http = require("http");
 
 var app = express();
 var port = 3000;
-var hostname = 'localhost';
+var hostname = '127.0.0.1';
 
 var path = require("path");
 
 var hbs = require('hbs');
 
+var _require = require("express-handlebars"),
+    engine = _require.engine;
+
 var templatepath = path.join(__dirname, '../public');
-app.use(express.json());
+app.use(express["static"]("../public"));
 app.set("view engine", "hbs");
 app.set("views", templatepath);
 app.get("/", function _callee(req, res) {
@@ -21,7 +24,7 @@ app.get("/", function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          res.render("index.hbs");
+          res.render("index");
 
         case 1:
         case "end":
@@ -30,12 +33,12 @@ app.get("/", function _callee(req, res) {
     }
   });
 });
-app.get("/login_hosptial", function _callee2(req, res) {
+app.get("/login_hospital", function _callee2(req, res) {
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          res.render("login_hosptial.hbs");
+          res.render("login_hospital");
 
         case 1:
         case "end":
@@ -49,7 +52,7 @@ app.get("/login_user", function _callee3(req, res) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          res.render("login_user.hbs");
+          res.render("login_user");
 
         case 1:
         case "end":
@@ -63,7 +66,7 @@ app.get("/about", function _callee4(req, res) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          res.render("about.hbs");
+          res.render("about");
 
         case 1:
         case "end":
@@ -72,12 +75,12 @@ app.get("/about", function _callee4(req, res) {
     }
   });
 });
-app.get("/contact", function _callee5(req, res) {
+app.get("/contactUs", function _callee5(req, res) {
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          res.render("contactUs.hbs");
+          res.render("contactUs");
 
         case 1:
         case "end":
@@ -91,7 +94,7 @@ app.get("/explore", function _callee6(req, res) {
     while (1) {
       switch (_context6.prev = _context6.next) {
         case 0:
-          res.render("explore.hbs");
+          res.render("explore");
 
         case 1:
         case "end":
@@ -105,7 +108,7 @@ app.get("/hospital", function _callee7(req, res) {
     while (1) {
       switch (_context7.prev = _context7.next) {
         case 0:
-          res.render("hospital.hbs");
+          res.render("hospital");
 
         case 1:
         case "end":
@@ -119,7 +122,7 @@ app.get("/explore", function _callee8(req, res) {
     while (1) {
       switch (_context8.prev = _context8.next) {
         case 0:
-          res.render("explore.hbs");
+          res.render("explore");
 
         case 1:
         case "end":
@@ -133,7 +136,7 @@ app.get("/signup_hospital", function _callee9(req, res) {
     while (1) {
       switch (_context9.prev = _context9.next) {
         case 0:
-          res.render("signup_hospital.hbs");
+          res.render("signup_hospital");
 
         case 1:
         case "end":
@@ -147,7 +150,7 @@ app.get("/signup_user", function _callee10(req, res) {
     while (1) {
       switch (_context10.prev = _context10.next) {
         case 0:
-          res.render("signup_user.hbs");
+          res.render("signup_user");
 
         case 1:
         case "end":
@@ -157,5 +160,5 @@ app.get("/signup_user", function _callee10(req, res) {
   });
 });
 app.listen(port, hostname, function () {
-  console.log("congratulations");
+  console.log("Server is Running!");
 });
