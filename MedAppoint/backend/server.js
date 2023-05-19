@@ -5,11 +5,11 @@ const port=3000
 const hostname='127.0.0.1'
 const path=require("path")
 const hbs=require('hbs')
-const {engine} = require("express-handlebars")
+
 const templatepath=path.join(__dirname,'../public')
 
 
-app.use(express.static("../public"))
+
 
 app.set("view engine","hbs")
 app.set("views",templatepath)

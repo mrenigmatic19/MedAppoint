@@ -12,11 +12,7 @@ var path = require("path");
 
 var hbs = require('hbs');
 
-var _require = require("express-handlebars"),
-    engine = _require.engine;
-
 var templatepath = path.join(__dirname, '../public');
-app.use(express["static"]("../public"));
 app.set("view engine", "hbs");
 app.set("views", templatepath);
 app.get("/", function _callee(req, res) {
