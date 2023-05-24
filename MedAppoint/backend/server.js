@@ -5,8 +5,9 @@ const port=3000
 const hostname='127.0.0.1'
 const path=require("path")
 const hbs=require('hbs')
-const hospinfo=require("./connection")
-const { checkPrime } = require("crypto")
+require("./connection")
+const hospinfo=require("../database/hospitalschema")
+const userinfo=require("../database/userschema")
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
@@ -43,6 +44,20 @@ app.post("/login_hospital",async (req,res)=>{
 })
 app.get("/login_user",async (req,res)=>{
     res.render("login_user")
+})
+app.post("/login_user",async (req,res)=>{
+    try{
+        const chk = await userinfo.findOne({email:req.body.email})
+        if(chk.password===req.body.password){
+            res.render("home")}
+            else{
+                res.send("wrong password")
+            }
+    }
+    catch{
+        res.send("wrong details")
+    }
+    
 })
 app.get("/about",async (req,res)=>{
     res.render("about")
@@ -82,7 +97,7 @@ app.post("/signup_hospital", async (req,res)=>{
             await hospinfo.insertMany([newhospreg]),
             res.render("login_hospital")
         }
-    else{
+    else{   
         res.send("password is not matching")
     }
 }
@@ -90,7 +105,29 @@ app.post("/signup_hospital", async (req,res)=>{
 app.get("/signup_user",async (req,res)=>{
     res.render("signup_user")
 })
-
+app.post("/signup_user", async (req,res)=>{
+   
+    const pass=req.body.password
+    const cpass=req.body.confirmpassword
+    if(pass===cpass){
+        const newuserreg=new userinfo({
+            username : req.body.username,
+            email:req.body.email,
+            contact: req.body.contact,
+            dob:req.body.dob,
+            pin:req.body.pin ,
+            gender:req.body.gender,
+            password:req.body.password,
+            address:req.body.address
+        })
+        await userinfo.insertMany([newuserreg]),
+        res.render("login_user")
+    }
+else{   
+    res.send("password is not matching")
+}
+}
+)
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")
 })

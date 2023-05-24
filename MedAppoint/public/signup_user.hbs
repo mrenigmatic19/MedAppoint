@@ -125,6 +125,7 @@
     <div class="container flex justify-content-center align-items-center">
       <h2>SignUp Here</h2>
       <br>
+      <form action="/signup_user" method="post">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Username</span>
         <input
@@ -133,6 +134,7 @@
           placeholder="Enter your Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="username"
         />
       </div>
       <div class="input-group mb-3">
@@ -143,6 +145,7 @@
           placeholder="Enter your Mobile Number"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="contact"
         />
       </div>
       <div class="input-group mb-3">
@@ -153,22 +156,22 @@
           placeholder="Enter your Email id"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="email"
         />
       </div>
 
 
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Location</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Choose...</option>
-          <option value="1">Delhi</option>
-          <option value="2">Mumbai</option>
-          <option value="2">Kolkata</option>
-          <option value="2">Chennai</option>
-          <option value="2">Bhopal</option>
-          <option value="2">Lucknow</option>
+     <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Pin</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter your Address"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          name="pin"
           
-        </select>
+        />
       </div>
 
       <div class="input-group mb-3">
@@ -179,16 +182,8 @@
           placeholder="Enter your Address"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="address"
         />
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Sector</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Choose...</option>
-          <option value="1">Government</option>
-          <option value="2">Private</option>
-          
-        </select>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Gender</span>
@@ -197,13 +192,15 @@
       </div>
       
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Since</span>
+        <span class="input-group-text" id="basic-addon1">Date Of Birth</span>
         <input
           type="text"
           class="form-control"
-          placeholder="Since 1943"
+          placeholder="dd/mm/yyyy"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="dob"
+          
         />
       </div>
 
@@ -215,6 +212,7 @@
           placeholder="Enter your Password"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="password"
         />
       </div>
 
@@ -226,11 +224,12 @@
           placeholder="Re-Enter Password"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="confirmpassword"
         />
       </div>
      
-      <button type="button" class="btn btn-primary">Submit</button>
-      
+       <input type="submit" class="btn btn-primary" value="Register">
+      </form>
       <footer class="py-3 my-4 f">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-primary">Home</a></li>

@@ -125,15 +125,17 @@
     <div class="container flex justify-content-center align-items-center">
       <h2>Login Here</h2>
       <br>
-     
+      <form action="/login_user" method="POST">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Email id</span>
+
         <input
           type="text"
           class="form-control"
           placeholder="Enter your Email id"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="email"
         />
       </div>
 
@@ -145,14 +147,15 @@
           placeholder="Enter your Password"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          name="password"
         />
       </div>
 
      
 
      
-      <button type="button" class="btn btn-primary">Submit</button>
-      
+       <input type="submit" class="btn btn-primary" value="Login">
+      </form>
       <footer class="py-3 my-4 f">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item"><a href="index" class="nav-link px-2 text-body-primary">Home</a></li>
