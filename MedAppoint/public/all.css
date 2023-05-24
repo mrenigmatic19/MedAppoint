@@ -44,4 +44,13 @@ filter: brightness(60%);
 }
 
 
- 
+ .k1{
+  padding: 5px;
+  /* border: 2px solid red; */
+  
+ }
+.k{
+  margin: 5px;
+  width: 105px;
+  /* border: 2px solid red; */
+} 
