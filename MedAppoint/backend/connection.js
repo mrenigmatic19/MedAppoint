@@ -1,13 +1,59 @@
-const {MongoClient} = require("mongodb")
-const url ='mongodb://127.0.0.1:27017'
-const client = new MongoClient(url)
-const database = 'MedAppoint'
-async function getData(){
-     let result = await client.connect()
-     let db= result.db(database)
-     let collection = db.collection('User_Info')
-     let info = await collection.find({}).toArray()
-     console.log(info);
-}
+ const mongoose = require("mongoose")
+ mongoose.connect("mongodb://localhost:27017/MedAppoint").then(()=>{
+      console.log(`connection successfull`)
+ }).catch((e)=>{
+      console.log(e);
+ })
 
-getData()
+const hospitalschema = new mongoose.Schema({
+hospitalname : {
+    type: String,
+    required:true,
+    unique:false
+},
+email: {
+    type: String,
+    required:true,
+    unique:true
+},
+contact: {
+    type: Number,
+    required:true,
+    unique:true
+   
+},
+org: {
+    type: String,
+    required:true,
+    unique:false
+},
+pin: {
+    type: Number,
+    required:true,
+    unique:false
+},
+establishedin: {
+    type: Number,
+    required:true,
+    unique:false
+},
+password: {
+    type: String,
+    required:true,
+    unique:false
+},
+
+description: {
+    type: String,
+    unique:false
+},
+address: {
+    type: String,
+    required:true,
+    unique:false
+}
+})
+
+
+const Hospinfo= new mongoose.model("Hospital_Info",hospitalschema,"Hospital_Info")
+module.exports=Hospinfo
