@@ -4,7 +4,7 @@ const equipmentschema = new mongoose.Schema({
     
     hospitalid:
     {
-        type:Number,
+        type:String,
         required:true,
         unique:false
     },

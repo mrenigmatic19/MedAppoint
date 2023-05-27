@@ -26,8 +26,8 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark" id="navbar::before">
       <div class="container-fluid">
-        <img src="/MedAppoint/public/image/logo.png" alt="" width="50px" height="50px" />
-        <a class="navbar-brand f" href="index.html">MedAppoint</a>
+        <img src="/image/logo.png" alt="" width="50px" height="50px" />
+        <a class="navbar-brand f" href="index">MedAppoint</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -42,13 +42,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item f">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about">About</a>
             </li>
             <li class="nav-item f">
-              <a class="nav-link" href="contactUs.html">Contact Us</a>
+              <a class="nav-link" href="contactUs">Contact Us</a>
             </li>
             <li class="nav-item f">
-              <a class="nav-link active" href="explore.html">Explore</a>
+              <a class="nav-link active" href="explore">Explore</a>
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0">
@@ -63,8 +63,8 @@
                 Login
               </a>
               <ul class="dropdown-menu f">
-                <li><a class="dropdown-item" href="login_user.html">For User</a></li>
-                <li><a class="dropdown-item" href="login_hospital.html">For Hospital</a></li>
+                <li><a class="dropdown-item" href="login_user">For User</a></li>
+                <li><a class="dropdown-item" href="login_hospital">For Hospital</a></li>
               </ul>
             </li>
           </ul>
@@ -74,6 +74,7 @@
 <form action="/equipments" method="POST">
     <div class="container">
       <h3>Equipments</h3>
+      
       <ul class="list-group list-group-horizontal k1">
         <li class="list-group-item k card border-warning">Equipments Name</li>
         <input type="text" class="form-control card border-primary" name="instrumentname">
@@ -86,13 +87,14 @@
         <li class="list-group-item k card border-warning">Availability</li>
         <input type="text" class="form-control card border-primary" name="availability">
       </ul>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <input type="submit" class="btn btn-primary" value="Update">
-        <input type="submit" class="btn btn-primary" value="Save">
-        
-      </div>
+     
+      
+        <input type="submit" name="submit" class="btn btn-primary" value="Save">
+
     </div>
-    </form>
+    
+        </form>
+  
     <hr>
   </body>
 </html>

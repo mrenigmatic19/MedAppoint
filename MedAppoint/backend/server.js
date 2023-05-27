@@ -34,7 +34,7 @@ app.post("/login_hospital",async (req,res)=>{
     try{
         const chk = await hospinfo.findOne({email:req.body.email})
         if(chk.password===req.body.password){
-            res.render("home")}
+            res.redirect("home")}
             else{
                 res.send("wrong password")
             }
@@ -44,6 +44,9 @@ app.post("/login_hospital",async (req,res)=>{
     }
     
 })
+app.get("/home",async (req,res)=>{
+    res.render("home")
+})
 app.get("/login_user",async (req,res)=>{
     res.render("login_user")
 })
@@ -51,7 +54,7 @@ app.post("/login_user",async (req,res)=>{
     try{
         const chk = await userinfo.findOne({email:req.body.email})
         if(chk.password===req.body.password){
-            res.render("home")}
+            res.redirect("home")}
             else{
                 res.send("wrong password")
             }
@@ -97,7 +100,7 @@ app.post("/signup_hospital", async (req,res)=>{
                 address:req.body.address
             })
             await hospinfo.insertMany([newhospreg])
-            res.render("login_hospital")
+            res.redirect("login_hospital")
         }
     else{   
         res.send("password is not matching")
@@ -105,7 +108,7 @@ app.post("/signup_hospital", async (req,res)=>{
 }
 )
 app.get("/signup_user",async (req,res)=>{
-    res.render("signup_user")
+    res.redirect("signup_user")
 })
 app.post("/signup_user", async (req,res)=>{
    
@@ -123,7 +126,7 @@ app.post("/signup_user", async (req,res)=>{
             address:req.body.address
         })
         await userinfo.insertMany([newuserreg])
-        res.render("login_user")
+        res.redirect("login_user")
     }
 else{   
     res.send("password is not matching")
@@ -139,11 +142,9 @@ app.post("/equipments", async(req,res)=>{
         instrumentname:req.body.instrumentname,
         type:req.body.type,
         availability:req.body.availability
-        
-
     })
     await equipmentinfo.insertMany([newequipmentreg])
-    res.render("equipments")
+    res.redirect("equipments")
 })
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")
