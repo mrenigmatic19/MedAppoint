@@ -9,7 +9,10 @@ require("./connection")
 const hospinfo=require("../database/hospitalschema")
 const userinfo=require("../database/userschema")
 const equipmentinfo=require("../database/equipmentschema")
-
+const icubedinfo=require("../database/icubedsschema")
+const appointmentinfo=require("../database/appointmentsschema")
+const bedinfo=require("../database/bedschema")
+const surgeryinfo=require("../database/surgeryschema")
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
@@ -145,6 +148,62 @@ app.post("/equipments", async(req,res)=>{
     })
     await equipmentinfo.insertMany([newequipmentreg])
     res.redirect("equipments")
+})
+app.get("/icubeds",async(req,res)=>{
+    res.render("icubeds")
+})
+app.post("/icubeds", async(req,res)=>{
+    const newicubedreg=new icubedinfo({
+        hospitalid:"hlo",
+        cost:req.body.cost,
+        beds:req.body.beds
+    })
+    await icubedinfo.insertMany([newicubedreg])
+    res.redirect("icubeds")
+})
+app.get("/appointments",async(req,res)=>{
+    res.render("appointments")
+})
+app.post("/appointments", async(req,res)=>{
+    const newappointmentreg=new appointmentinfo({
+        hospitalid:"hlo",
+        doctor:req.body.doctor,
+        specialist:req.body.specialist,
+        cost:req.body.cost,
+        yoe:req.body.yoe,
+        bookingslot:req.body.bookingslot
+    })
+    await appointmentinfo.insertMany([newappointmentreg])
+    res.redirect("appointments")
+})
+app.get("/beds",async(req,res)=>{
+    res.render("beds")
+})
+app.post("/beds", async(req,res)=>{
+    const newbedreg=new bedinfo({
+        hospitalid:"hlo",
+        publicward:req.body.publicward,
+        privateward:req.body.privateward,
+        wards:req.body.wards,
+        disease:req.body.disease
+    })
+    await bedinfo.insertMany([newbedreg])
+    res.redirect("beds")
+})
+app.get("/surgeries",async(req,res)=>{
+    res.render("surgeries")
+})
+app.post("/surgeries", async(req,res)=>{
+    const newsurgeryreg=new surgeryinfo({
+        hospitalid:"hlo",
+        doctor:req.body.doctor,
+        specialist:req.body.specialist,
+        cost:req.body.cost,
+        yoe:req.body.yoe,
+       
+    })
+    await surgeryinfo.insertMany([newsurgeryreg])
+    res.redirect("surgeries")
 })
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")

@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 require("../backend/connection")
-const surgeryshcema = new mongoose.Schema({
+const surgeryschema = new mongoose.Schema({
     hospitalid:
     {
-        type:Number,
+        type: String,
         required:true,
         unique:false
     },
@@ -15,12 +15,12 @@ const surgeryshcema = new mongoose.Schema({
     specialist: {
         type: String,
         required:true,
-        unique:true
+        unique:false
     },
     cost: {
         type: Number,
         required:true,
-        unique:true
+        unique:false
        
     },
     doctor: {

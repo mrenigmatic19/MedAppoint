@@ -41,44 +41,45 @@
             </a>
             <ul class="dropdown-menu f">
               <li><a class="dropdown-item" href="login_user.html">For User</a></li>
-              <li><a class="dropdown-item" href="login_hospital.html">For Hospital</a></li>
+              <li>
+                <a class="dropdown-item" href="login_hospital.html">For Hospital</a>
+              </li>
               <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="contactUs.html">Contact Us</a></li>
+              <li>
+                <a class="dropdown-item" href="contactUs.html">Contact Us</a>
+              </li>
             </ul>
           </li>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item f">
-            <a class="nav-link" href="register.html">Register</a>
+            <a class="nav-link" href="signup_user.html">Signup</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
+  <form action="/icubeds" method="POST">
   <div class="container">
-    <div><h3>Beds</h3></div>
+    <div><h3>ICU Beds</h3></div>
     <ul class="list-group list-group-horizontal k1">
       <li class="list-group-item k card border-warning">Price</li>
-      <input type="text" class="form-control card border-primary">
+      <input type="text" class="form-control card border-primary" name="cost">
     </ul>
     <ul class="list-group list-group-horizontal k1">
-      <li class="list-group-item k card border-warning">Total Wards</li>
-      <input type="text" class="form-control card border-primary">
+      <li class="list-group-item k card border-warning">Total Beds</li>
+      <input type="text" class="form-control card border-primary" name="beds">
     </ul>
-    <ul class="list-group list-group-horizontal k1">
-      <li class="list-group-item k card border-warning">Public-Ward</li>
-      <input type="text" class="form-control card border-primary">
-    </ul>
-    <ul class="list-group list-group-horizontal k1">
-      <li class="list-group-item k card border-warning">Private-Ward</li>
-      <input type="text" class="form-control card border-primary">
-    </ul>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-primary me-md-2" type="button">Update</button>
-      <button class="btn btn-primary" type="button">Save</button>
+    
+      
+     <input type="text" name="submit" class="btn btn-primary" value="Save">
     </div>
   </div>
+  </form>
   <hr>
+  
+  
+  
+  
 </body>
 </html>

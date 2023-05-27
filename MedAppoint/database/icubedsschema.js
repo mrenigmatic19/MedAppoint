@@ -3,7 +3,7 @@ require("../backend/connection")
 const icubedsschema = new mongoose.Schema({
     hospitalid:
     {
-        type:Number,
+        type:String,
         required:true,
         unique:false
     },
@@ -13,9 +13,9 @@ const icubedsschema = new mongoose.Schema({
         unique:false
     },
     beds: {
-        type: Numbers,
+        type: Number,
         required:true,
-        unique:true
+        unique:false
     }
     })
     const Icubedsinfo=new mongoose.model("Icubeds_Info",icubedsschema,"Icubeds_Info")

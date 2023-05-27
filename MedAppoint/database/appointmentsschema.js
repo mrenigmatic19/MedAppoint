@@ -1,33 +1,39 @@
 const mongoose = require("mongoose")
 require("../backend/connection")
-const bedschema = new mongoose.Schema({
+const appointmentsschema = new mongoose.Schema({
     hospitalid:
     {
         type:String,
         required:true,
         unique:false
     },
-    publicward: {
+    yoe : {
         type: Number,
         required:true,
         unique:false
     },
-    privateward: {
-        type: Number,
-        required:true,
-        unique:false
-    },
-    disease: {
+    specialist: {
         type: String,
+        required:true,
+        unique:false
+    },
+    cost: {
+        type: Number,
         required:true,
         unique:false
        
     },
-    wards: {
-        type: Number,
+    doctor: {
+        type: String,
         required:true,
         unique:false
+    },
+    bookingslot:{
+        type:Number,
+        required:true,
+        uique: false
     }
+    
     })
-    const Bedinfo=new mongoose.model("Bed_Info",bedschema,"Bed_Info")
-module.exports=Bedinfo
+    const Appointmentinfo=new mongoose.model("Appointment_Info",appointmentsschema,"Appointment_Info")
+module.exports=Appointmentinfo
