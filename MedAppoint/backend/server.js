@@ -8,6 +8,8 @@ const hbs=require('hbs')
 require("./connection")
 const hospinfo=require("../database/hospitalschema")
 const userinfo=require("../database/userschema")
+const equipmentinfo=require("../database/equipmentschema")
+
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
@@ -38,7 +40,7 @@ app.post("/login_hospital",async (req,res)=>{
             }
     }
     catch{
-        res.send("wrond details")
+        res.send("wrong details")
     }
     
 })
@@ -94,7 +96,7 @@ app.post("/signup_hospital", async (req,res)=>{
                 description: "hlo",
                 address:req.body.address
             })
-            await hospinfo.insertMany([newhospreg]),
+            await hospinfo.insertMany([newhospreg])
             res.render("login_hospital")
         }
     else{   
@@ -120,7 +122,7 @@ app.post("/signup_user", async (req,res)=>{
             password:req.body.password,
             address:req.body.address
         })
-        await userinfo.insertMany([newuserreg]),
+        await userinfo.insertMany([newuserreg])
         res.render("login_user")
     }
 else{   
@@ -128,6 +130,21 @@ else{
 }
 }
 )
+app.get("/equipments",async(req,res)=>{
+    res.render("equipments")
+})
+app.post("/equipments", async(req,res)=>{
+    const newequipmentreg=new equipmentinfo({
+        hospitalid:"hlo",
+        instrumentname:req.body.instrumentname,
+        type:req.body.type,
+        availability:req.body.availability
+        
+
+    })
+    await equipmentinfo.insertMany([newequipmentreg])
+    res.render("equipments")
+})
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")
 })

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 require("../backend/connection")
 const equipmentschema = new mongoose.Schema({
+    
     hospitalid:
     {
         type:Number,
@@ -15,15 +16,16 @@ const equipmentschema = new mongoose.Schema({
     type: {
         type: String,
         required:true,
-        unique:true
+        unique:false
     },
     availability: {
         type: String,
         required:true,
-        unique:true
+        unique:false
        
     },
     
     })
-    const Euipmentinfo=new mongoose.model("Equipment_Info",equipmentschema,"Equipment_Info")
+    const Equipmentinfo=new mongoose.model("Equipment_Info",equipmentschema,"Equipment_Info")
 module.exports=Equipmentinfo
+
