@@ -381,3 +381,6 @@ app.post("/equipments", function _callee17(req, res) {
 app.listen(port, hostname, function () {
   console.log("Server is Running!");
 });
+  console.log("congratulations");
+});
+
