@@ -37,7 +37,7 @@ app.post("/login_hospital",async (req,res)=>{
     try{
         const chk = await hospinfo.findOne({email:req.body.email})
         if(chk.password===req.body.password){
-            res.redirect("home")}
+            res.redirect("hospitaldetails")}
             else{
                 res.send("wrong password")
             }
@@ -86,6 +86,9 @@ app.get("/explore",async (req,res)=>{
 app.get("/signup_hospital",async (req,res)=>{
     res.render("signup_hospital")
 })
+app.get("/hospitaldetails",async(req,res)=>{
+    res.render("hospitaldetails")
+})
 app.post("/signup_hospital", async (req,res)=>{
    
         const pass=req.body.password
@@ -103,7 +106,9 @@ app.post("/signup_hospital", async (req,res)=>{
                 address:req.body.address
             })
             await hospinfo.insertMany([newhospreg])
+        
             res.redirect("login_hospital")
+            
         }
     else{   
         res.send("password is not matching")
