@@ -54,3 +54,47 @@ filter: brightness(60%);
   width: 105px;
   /* border: 2px solid red; */
 } 
+
+
+.searchh{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+margin-left: .5rem;
+margin-top: 2rem;
+
+}
+
+
+#search-btn{
+  margin: 1rem;
+}
+
+.bb{
+  border: 2px solid red;
+  margin-top: 2rem;
+  border-radius: 2rem;
+  box-shadow: 5px 7px 6px red;
+}
+
+#search-card{
+  margin: 2rem;
+}
+
+
+.inside{
+  border: 2px solid rgb(222, 96, 96);
+  border-radius: .5rem;
+
+  margin: 2rem;
+}
+.gy{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w{
+  width: 500px;
+
+}
