@@ -1,11 +1,13 @@
 const express= require("express")
-const http=require("http")
 const app=express()
 const port=3000
 const hostname='127.0.0.1'
 const path=require("path")
 const hbs=require('hbs')
 require("./connection")
+const bcrypt = require("bcrypt")
+
+const session = require("express-session")
 const hospinfo=require("../database/hospitalschema")
 const userinfo=require("../database/userschema")
 const equipmentinfo=require("../database/equipmentschema")
@@ -13,9 +15,22 @@ const icubedinfo=require("../database/icubedsschema")
 const appointmentinfo=require("../database/appointmentsschema")
 const bedinfo=require("../database/bedschema")
 const surgeryinfo=require("../database/surgeryschema")
+const mongosession=require("connect-mongodb-session")(session)
 app.use(express.json())
+
 app.use(express.urlencoded({extended:false}))
 
+const store=new mongosession({
+    uri:"mongodb://127.0.0.1:27017/MedAppoint",
+    collection:"mysessions"
+})
+
+app.use(session({
+    secret:"MedAppoint",
+    resave:false,
+    saveUninitialized:false,
+    store:store
+}))
 
 
 const templatepath=path.join(__dirname,'../public')
@@ -35,8 +50,12 @@ app.get("/login_hospital",async (req,res)=>{
 })
 app.post("/login_hospital",async (req,res)=>{
     try{
-        const chk = await hospinfo.findOne({email:req.body.email})
-        if(chk.password===req.body.password){
+        const chk = await userinfo.findOne({email:req.body.email})
+        if(!chk){
+        res.redirect("login")}
+        const ismatch=await bcrypt.compare(req.body.password,chk.password)
+        if(ismatch){
+            req.session.isAuth=true;
             res.redirect("hospitaldetails")}
             else{
                 res.send("wrong password")
@@ -45,10 +64,19 @@ app.post("/login_hospital",async (req,res)=>{
     catch{
         res.send("wrong details")
     }
-    
+
 })
-app.get("/home",async (req,res)=>{
+const isAuth=(req,res,next)=>{
+    if(req.session.isAuth){
+        next()
+    }
+    else{
+        res.redirect("/")
+    }
+}
+app.get("/home",isAuth,async (req,res)=>{
     res.render("home")
+   
 })
 app.get("/login_user",async (req,res)=>{
     res.render("login_user")
@@ -56,7 +84,11 @@ app.get("/login_user",async (req,res)=>{
 app.post("/login_user",async (req,res)=>{
     try{
         const chk = await userinfo.findOne({email:req.body.email})
-        if(chk.password===req.body.password){
+        if(!chk){
+        res.redirect("login")}
+        const ismatch=await bcrypt.compare(req.body.password,chk.password)
+        if(ismatch){
+            req.session.isAuth=true;
             res.redirect("home")}
             else{
                 res.send("wrong password")
@@ -86,14 +118,13 @@ app.get("/explore",async (req,res)=>{
 app.get("/signup_hospital",async (req,res)=>{
     res.render("signup_hospital")
 })
-app.get("/hospitaldetails",async(req,res)=>{
+app.get("/hospitaldetails",isAuth,async(req,res)=>{
     res.render("hospitaldetails")
 })
 app.post("/signup_hospital", async (req,res)=>{
-   
-        const pass=req.body.password
-        const cpass=req.body.confirmpassword
-        if(pass===cpass){
+        const hashpwd= await bcrypt.hash(req.body.password,12)
+        const cpass=await bcrypt.compare(req.body.confirmpassword,hashpwd)
+        if(cpass){
             const newhospreg=new hospinfo({
                 hospitalname : req.body.hospitalname,
                 email:req.body.email,
@@ -101,7 +132,7 @@ app.post("/signup_hospital", async (req,res)=>{
                 org:req.body.org,
                 pin:req.body.pin ,
                 establishedin:req.body.establishedin,
-                password:req.body.password,
+                password:hashpwd,
                 description: "hlo",
                 address:req.body.address
             })
@@ -116,13 +147,13 @@ app.post("/signup_hospital", async (req,res)=>{
 }
 )
 app.get("/signup_user",async (req,res)=>{
-    res.redirect("signup_user")
+    res.render("signup_user")
 })
 app.post("/signup_user", async (req,res)=>{
-   
-    const pass=req.body.password
-    const cpass=req.body.confirmpassword
-    if(pass===cpass){
+    const hashpwd= await bcrypt.hash(req.body.password,12)
+    const cpass=await bcrypt.compare(req.body.confirmpassword,hashpwd)
+    
+    if(cpass){
         const newuserreg=new userinfo({
             username : req.body.username,
             email:req.body.email,
@@ -130,7 +161,7 @@ app.post("/signup_user", async (req,res)=>{
             dob:req.body.dob,
             pin:req.body.pin ,
             gender:req.body.gender,
-            password:req.body.password,
+            password:hashpwd,
             address:req.body.address
         })
         await userinfo.insertMany([newuserreg])
@@ -209,6 +240,12 @@ app.post("/surgeries", async(req,res)=>{
     })
     await surgeryinfo.insertMany([newsurgeryreg])
     res.redirect("surgeries")
+})
+app.post("/logout",(req,res)=>{
+    req.session.destroy((err)=>{
+        if(err)throw err;
+        res.redirect("/");
+    })
 })
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")
