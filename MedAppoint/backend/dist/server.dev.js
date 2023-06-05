@@ -828,7 +828,8 @@ app.post("/logout", function (req, res) {
     if (err) throw err;
     res.redirect("/");
   });
-});
+}); //---------------------------------Hosting---------------------------------------------------
+
 app.listen(port, hostname, function () {
   console.log("Server is Running!");
 });
