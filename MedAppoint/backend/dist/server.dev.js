@@ -1,5 +1,6 @@
 "use strict";
 
+//----------------------------------Libraries------------------------------------------------
 var express = require("express");
 
 var path = require("path");
@@ -12,13 +13,13 @@ var flash = require("connect-flash");
 
 var mongosession = require("connect-mongodb-session")(session);
 
-var ejs = require("ejs"); //-------------------------------------------------------------------------
+var ejs = require("ejs"); //---------------------------------Hosting Port-----------------------------------------------
 
 
 var port = 3000;
 var hostname = '127.0.0.1';
 
-require("./connection"); //-------------------------------------------------------------------------
+require("./connection"); //--------------------------------Database Schema----------------------------------------------
 
 
 var hospinfo = require("../database/hospitalschema");
@@ -33,13 +34,13 @@ var appointmentinfo = require("../database/appointmentsschema");
 
 var bedinfo = require("../database/bedschema");
 
-var surgeryinfo = require("../database/surgeryschema"); //-------------------------------------------------------------------------
+var surgeryinfo = require("../database/surgeryschema"); //--------------------------------Database Link-----------------------------------------------
 
 
 var store = new mongosession({
   uri: "mongodb://127.0.0.1:27017/MedAppoint",
   collection: "mysessions"
-}); //-------------------------------------------------------------------------
+}); //---------------------------------Middleware-----------------------------------------------------
 
 var app = express();
 app.use(express.json());
@@ -47,17 +48,17 @@ app.use(flash());
 app.use(express.urlencoded({
   extended: false
 }));
+app.use(express["static"]("../public"));
 app.use(session({
   secret: "MedAppoint",
   resave: false,
   saveUninitialized: false,
   store: store
-})); //-------------------------------------------------------------------------
+})); //------------------------------------Engine Setting--------------------------------------------
 
 var templatepath = path.join(__dirname, '../public');
-app.use(express["static"]("../public"));
 app.set("view engine", "ejs");
-app.set("views", templatepath); //---------------------------------------------------------------------------------
+app.set("views", templatepath); //----------------------------------Login Credential-----------------------------------------------
 
 var loginuid = function loginuid(req, res, next) {
   var details;
@@ -99,7 +100,7 @@ var loginhid = function loginhid(req, res, next) {
       }
     }
   });
-}; //---------------------------------------------------------------------------------
+}; //----------------------------------Authorization-----------------------------------------------
 
 
 var isAuth = function isAuth(req, res, next) {
@@ -108,7 +109,7 @@ var isAuth = function isAuth(req, res, next) {
   } else {
     res.redirect("/");
   }
-}; //---------------------------------------------------------------------------------
+}; //--------------------------------------Index------------------------------------------------
 
 
 app.get("/", function _callee(req, res) {
@@ -351,7 +352,7 @@ app.get("/hospital", function _callee10(req, res) {
       }
     }
   });
-}); //---------------------------------------------------------------------------------
+}); //-----------------------------------Hospital Home----------------------------------------------
 
 app.get("/hospitaldetails", isAuth, function _callee11(req, res) {
   return regeneratorRuntime.async(function _callee11$(_context13) {
@@ -367,7 +368,7 @@ app.get("/hospitaldetails", isAuth, function _callee11(req, res) {
       }
     }
   });
-}); //---------------------------------------------------------------------------------
+}); //---------------------------------Sign up Hospital------------------------------------------------
 
 app.get("/signup_hospital", function _callee12(req, res) {
   return regeneratorRuntime.async(function _callee12$(_context14) {
@@ -468,7 +469,7 @@ app.post("/signup_hospital", function _callee13(req, res) {
       }
     }
   }, null, null, [[0, 26]]);
-}); //---------------------------------------------------------------------------------
+}); //-------------------------------Sign Up User--------------------------------------------------
 
 app.get("/signup_user", function _callee14(req, res) {
   return regeneratorRuntime.async(function _callee14$(_context16) {
@@ -578,7 +579,6 @@ app.get("/equipments", isAuth, function _callee16(req, res) {
           equipmentinfo.find({
             hospitalid: req.session.loginhid
           }).then(function (data) {
-            console.log(data);
             res.render("equipments", {
               message: req.flash('msg'),
               data: data
@@ -628,7 +628,6 @@ app.get("/icubeds", isAuth, function _callee18(req, res) {
           icubedinfo.find({
             hospitalid: req.session.loginhid
           }).then(function (data) {
-            console.log(data);
             res.render("icubeds", {
               message: req.flash('msg'),
               data: data
@@ -678,7 +677,6 @@ app.get("/appointments", isAuth, function _callee20(req, res) {
           appointmentinfo.find({
             hospitalid: req.session.loginhid
           }).then(function (data) {
-            console.log(data);
             res.render("appointments", {
               message: req.flash('msg'),
               data: data
@@ -731,7 +729,6 @@ app.get("/beds", isAuth, function _callee22(req, res) {
           bedinfo.find({
             hospitalid: req.session.loginhid
           }).then(function (data) {
-            console.log(data);
             res.render("beds", {
               message: req.flash('msg'),
               data: data
@@ -773,7 +770,7 @@ app.post("/beds", function _callee23(req, res) {
       }
     }
   });
-}); //-------------------------------------------------------------------------------
+}); //--------------------------------Surgeries-----------------------------------------------
 
 app.get("/surgeries", isAuth, function _callee24(req, res) {
   return regeneratorRuntime.async(function _callee24$(_context26) {
@@ -783,7 +780,6 @@ app.get("/surgeries", isAuth, function _callee24(req, res) {
           surgeryinfo.find({
             hospitalid: req.session.loginhid
           }).then(function (data) {
-            console.log(data);
             res.render("surgeries", {
               message: req.flash('msg'),
               data: data
@@ -825,14 +821,14 @@ app.post("/surgeries", function _callee25(req, res) {
       }
     }
   });
-}); //---------------------------------------------------------------------------------
+}); //-------------------------------Logout Key--------------------------------------------------
 
 app.post("/logout", function (req, res) {
   req.session.destroy(function (err) {
     if (err) throw err;
     res.redirect("/");
   });
-}); //---------------------------------------------------------------------------------
+}); //--------------------------------Hosting-------------------------------------------------
 
 app.listen(port, hostname, function () {
   console.log("Server is Running!");

@@ -1,3 +1,6 @@
+//----------------------------------Libraries------------------------------------------------
+
+
 const express= require("express")
 const path=require("path")
 const bcrypt = require("bcrypt")
@@ -7,7 +10,7 @@ const mongosession=require("connect-mongodb-session")(session)
 const ejs=require("ejs")
 
 
-//-------------------------------------------------------------------------
+//---------------------------------Hosting Port-----------------------------------------------
 
 
 const port=3000
@@ -15,7 +18,7 @@ const hostname='127.0.0.1'
 require("./connection")
 
 
-//-------------------------------------------------------------------------
+//--------------------------------Database Schema----------------------------------------------
 
 
 const hospinfo      =   require("../database/hospitalschema")
@@ -27,7 +30,7 @@ const bedinfo       =   require("../database/bedschema")
 const surgeryinfo   =   require("../database/surgeryschema")
 
 
-//-------------------------------------------------------------------------
+//--------------------------------Database Link-----------------------------------------------
 
 
 const store=new mongosession({
@@ -37,12 +40,13 @@ const store=new mongosession({
 
 
 
-//-------------------------------------------------------------------------
+//---------------------------------Middleware-----------------------------------------------------
 
 const app=express()
 app.use(express.json())
 app.use(flash())
 app.use(express.urlencoded({extended:false}))
+app.use(express.static("../public"))
 app.use(session({
     secret:"MedAppoint",
     resave:false,
@@ -51,18 +55,14 @@ app.use(session({
 }))
 
 
-//-------------------------------------------------------------------------
+//------------------------------------Engine Setting--------------------------------------------
 
 const templatepath=path.join(__dirname,'../public')
-app.use(express.static("../public"))
-
-
-
 app.set("view engine","ejs")
 app.set("views",templatepath)
 
 
-//---------------------------------------------------------------------------------
+//----------------------------------Login Credential-----------------------------------------------
 
 
 const loginuid=async(req,res,next)=>{
@@ -76,7 +76,7 @@ const loginhid=async(req,res,next)=>{
 }
 
 
-//---------------------------------------------------------------------------------
+//----------------------------------Authorization-----------------------------------------------
 
 
 const isAuth=(req,res,next)=>{
@@ -90,7 +90,7 @@ const isAuth=(req,res,next)=>{
 
 
 
-//---------------------------------------------------------------------------------
+//--------------------------------------Index------------------------------------------------
 
 
 app.get("/",async (req,res)=>{
@@ -187,7 +187,7 @@ app.get("/hospital",async (req,res)=>{
     res.render("hospital")
 })
 
-//---------------------------------------------------------------------------------
+//-----------------------------------Hospital Home----------------------------------------------
 
 
 app.get("/hospitaldetails",isAuth,async(req,res)=>{
@@ -195,7 +195,7 @@ app.get("/hospitaldetails",isAuth,async(req,res)=>{
     res.render("hospitaldetails")
 })
 
-//---------------------------------------------------------------------------------
+//---------------------------------Sign up Hospital------------------------------------------------
 
 app.get("/signup_hospital",async (req,res)=>{
     res.render("signup_hospital",{message:req.flash('msg')})
@@ -240,7 +240,7 @@ app.post("/signup_hospital", async (req,res)=>{
 }
 )
 
-//---------------------------------------------------------------------------------
+//-------------------------------Sign Up User--------------------------------------------------
 
 
 app.get("/signup_user",async (req,res)=>{
@@ -289,7 +289,6 @@ catch{
 
 app.get("/equipments",isAuth,async(req,res)=>{
     equipmentinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
-        console.log(data)
         res.render("equipments",{message:req.flash('msg'),data:data})
     }).catch((y)=>{
 console.log(y)
@@ -314,7 +313,6 @@ app.post("/equipments", async(req,res)=>{
 
 app.get("/icubeds",isAuth,async(req,res)=>{
     icubedinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
-    console.log(data)
         res.render("icubeds",{message:req.flash('msg'),data:data})
     }).catch((y)=>{
 console.log(y)
@@ -338,7 +336,6 @@ app.post("/icubeds",async(req,res)=>{
 
 app.get("/appointments",isAuth,async(req,res)=>{
     appointmentinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
-        console.log(data)
             res.render("appointments",{message:req.flash('msg'),data:data})
         }).catch((y)=>{
     console.log(y)
@@ -366,7 +363,6 @@ app.post("/appointments", async(req,res)=>{
 
 app.get("/beds",isAuth,async(req,res)=>{
     bedinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
-        console.log(data)
             res.render("beds",{message:req.flash('msg'),data:data})
         }).catch((y)=>{
     console.log(y)
@@ -389,12 +385,11 @@ app.post("/beds", async(req,res)=>{
 })
 
 
-//-------------------------------------------------------------------------------
+//--------------------------------Surgeries-----------------------------------------------
 
 
 app.get("/surgeries",isAuth,async(req,res)=>{
     surgeryinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
-        console.log(data)
         res.render("surgeries",{message:req.flash('msg'),data:data})
     }).catch((y)=>{
 console.log(y)
@@ -417,7 +412,7 @@ app.post("/surgeries", async(req,res)=>{
 })
 
 
-//---------------------------------------------------------------------------------
+//-------------------------------Logout Key--------------------------------------------------
 
 
 app.post("/logout",(req,res)=>{
@@ -428,7 +423,7 @@ app.post("/logout",(req,res)=>{
 })
 
 
-//---------------------------------------------------------------------------------
+//--------------------------------Hosting-------------------------------------------------
 
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")
