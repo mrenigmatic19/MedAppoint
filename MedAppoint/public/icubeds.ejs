@@ -114,6 +114,33 @@
     </div>
   </div>
   </form>
+  <% if(data.length>0){%>
+    <div class="container">
+      <table class="table table-border">
+        <tr>
+    
+          <td>Total Beds</td>
+          <td>Price</td>
+          <td>Modify</td>
+        </tr>
+        <% data.forEach((x)=>{ %>
+          <tr>
+            
+            <td><%=x.beds%></td>
+            <td><%=x.cost%></td>
+           
+            <td>
+              <form>
+                <button>Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+  
+  
+      </table>
+    </div>
+    <%}%>
   <hr>
   
   

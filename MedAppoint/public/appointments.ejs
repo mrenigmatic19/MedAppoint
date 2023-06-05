@@ -124,6 +124,38 @@
       </div>
     </div>
   </form>
+  <% if(data.length>0){%>
+    <div class="container">
+      <table class="table table-border">
+        <tr>
+    
+          <td>Doctor Name</td>
+          <td>Specialisation</td>
+          <td>Year of Experience</td>
+          <td>Price</td>
+          <td>Booking Slots</td>
+          <td>Modify</td>
+        </tr>
+        <% data.forEach((x)=>{ %>
+          <tr>
+            
+            <td><%=x.doctor%></td>
+            <td><%=x.specialist%></td>
+            <td><%=x.yoe%></td>
+            <td><%=x.cost%></td>
+            <td><%=x.bookingslot%></td>
+            <td>
+              <form>
+                <button>Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+  
+  
+      </table>
+    </div>
+    <%}%>
     <script src="script.js"></script>
   </body>
 </html>

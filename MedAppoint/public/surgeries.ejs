@@ -121,7 +121,37 @@
   </div>
 </form>
   <hr>
-
+  <% if(data.length>0){%>
+    <div class="container">
+      <table class="table table-border">
+        <tr>
+    
+          <td>Surgeon Name</td>
+          <td>Specialisation</td>
+          <td>Year of Experience</td>
+          <td>Price</td>
+        ]
+          <td>Modify</td>
+        </tr>
+        <% data.forEach((x)=>{ %>
+          <tr>
+            
+            <td><%=x.doctor%></td>
+            <td><%=x.specialist%></td>
+            <td><%=x.yoe%></td>
+            <td><%=x.cost%></td>
+            <td>
+              <form>
+                <button>Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+  
+  
+      </table>
+    </div>
+    <%}%>
   <footer class="py-3 my-4 f">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-primary">Home</a></li>

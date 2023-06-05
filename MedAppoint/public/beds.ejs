@@ -105,20 +105,50 @@
       <input type="text" class="form-control card border-primary" name="disease">
     </ul>
     <ul class="list-group list-group-horizontal k1">
-      <li class="list-group-item k card border-warning">Total Wards</li>
-      <input type="text" class="form-control card border-primary" name="wards">
+      <li class="list-group-item k card border-warning">Total Ward</li>
+      <input type="number" class="form-control card border-primary" name="ward">
     </ul>
     <ul class="list-group list-group-horizontal k1">
       <li class="list-group-item k card border-warning">Public-Ward</li>
-      <input type="text" class="form-control card border-primary" name="publicward">
+      <input type="number" class="form-control card border-primary" name="publicward">
     </ul>
     <ul class="list-group list-group-horizontal k1">
       <li class="list-group-item k card border-warning">Private-Ward</li>
-      <input type="text" class="form-control card border-primary" name="privateward">
+      <input type="number" class="form-control card border-primary" name="privateward">
     </ul>
     <input type="submit" name="submit" class="btn btn-primary" value="Save">
   </div>
 </form>
+<% if(data.length>0){%>
+  <div class="container">
+    <table class="table table-border">
+      <tr>
+  
+        <td>disease Name</td>
+        <td>Private Ward</td>
+        <td>Public Ward</td>
+        <td>Total Ward</td>
+        <td>Modify</td>
+      </tr>
+      <% data.forEach((x)=>{ %>
+        <tr>
+          
+          <td><%=x.disease%></td>
+          <td><%=x.privateward%></td>
+          <td><%=x.publicward%></td>
+          <td><%=x.wards%></td>
+          <td>
+            <form>
+              <button>Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+
+
+    </table>
+  </div>
+  <%}%>
   <hr>
 </body>
 </html>

@@ -126,6 +126,11 @@
     <div class="container flex justify-content-center align-items-center">
       <h2>SignUp Here</h2>
       <br>
+      <% if(message.length>0) {%>
+        <div class="alert alert-danger">
+          <%=message%>
+        </div>
+        <%}%>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Hospital Name</span>
         <input

@@ -1,31 +1,48 @@
 const express= require("express")
-const app=express()
-const port=3000
-const hostname='127.0.0.1'
 const path=require("path")
-const hbs=require('hbs')
-require("./connection")
 const bcrypt = require("bcrypt")
 const session = require("express-session")
-const hospinfo=require("../database/hospitalschema")
-const userinfo=require("../database/userschema")
-const equipmentinfo=require("../database/equipmentschema")
-const icubedinfo=require("../database/icubedsschema")
-const appointmentinfo=require("../database/appointmentsschema")
-const bedinfo=require("../database/bedschema")
 const flash=require("connect-flash")
-const surgeryinfo=require("../database/surgeryschema")
 const mongosession=require("connect-mongodb-session")(session)
 const ejs=require("ejs")
-app.use(express.json())
-app.use(flash())
-app.use(express.urlencoded({extended:false}))
+
+
+//-------------------------------------------------------------------------
+
+
+const port=3000
+const hostname='127.0.0.1'
+require("./connection")
+
+
+//-------------------------------------------------------------------------
+
+
+const hospinfo      =   require("../database/hospitalschema")
+const userinfo      =   require("../database/userschema")
+const equipmentinfo =   require("../database/equipmentschema")
+const icubedinfo    =   require("../database/icubedsschema")
+const appointmentinfo =  require("../database/appointmentsschema")
+const bedinfo       =   require("../database/bedschema")
+const surgeryinfo   =   require("../database/surgeryschema")
+
+
+//-------------------------------------------------------------------------
+
 
 const store=new mongosession({
     uri:"mongodb://127.0.0.1:27017/MedAppoint",
     collection:"mysessions"
 })
 
+
+
+//-------------------------------------------------------------------------
+
+const app=express()
+app.use(express.json())
+app.use(flash())
+app.use(express.urlencoded({extended:false}))
 app.use(session({
     secret:"MedAppoint",
     resave:false,
@@ -33,6 +50,8 @@ app.use(session({
     store:store
 }))
 
+
+//-------------------------------------------------------------------------
 
 const templatepath=path.join(__dirname,'../public')
 app.use(express.static("../public"))
@@ -43,28 +62,49 @@ app.set("view engine","ejs")
 app.set("views",templatepath)
 
 
-const loginhid=async(req,res,next)=>{
-    const details= await hospinfo.finOne(_id=req.session.loginhid)
-    console.log(details)
+//---------------------------------------------------------------------------------
+
+
+const loginuid=async(req,res,next)=>{
+    const details= await userinfo.finOne(_id=req.session.loginhid)
     next()
 }
+
+const loginhid=async(req,res,next)=>{
+    const details= await hospinfo.finOne(_id=req.session.loginhid)
+    next()
+}
+
+
+//---------------------------------------------------------------------------------
+
+
 const isAuth=(req,res,next)=>{
     if(req.session.isAuth){
         next()
     }
     else{
-        res.redirect("/ ")
+        res.redirect("/")
     }
 }
+
+
+
+//---------------------------------------------------------------------------------
 
 
 app.get("/",async (req,res)=>{
     res.render("index")
 })
 
+
+//---------------------------------Login Hopspital------------------------------------------------
+
+
 app.get("/login_hospital",async (req,res)=>{
     res.render("login_hospital",{message:req.flash('msg')})
 })
+
 app.post("/login_hospital",async (req,res)=>{
     try{
         const chk = await hospinfo.findOne({email:req.body.email})
@@ -84,15 +124,23 @@ app.post("/login_hospital",async (req,res)=>{
     }
     }
     catch{
-        res.send("Server not found")
+        req.flash('msg','Enter Full details')
+        res.redirect("login_hospital")
     }
+    
 
 })
+//---------------------------------------Home User------------------------------------------
+
 
 app.get("/home",isAuth,async (req,res)=>{
     res.render("home")
    
 })
+
+//-------------------------------------Login User--------------------------------------------
+
+
 app.get("/login_user",async (req,res)=>{
     res.render("login_user",{message:req.flash('msg')})
 })
@@ -116,11 +164,16 @@ app.post("/login_user",async (req,res)=>{
         
         }
         catch{
-            
-            res.send("server not found")
+            req.flash('msg','Enter Details')
+            res.redirect("login_user")
+        
         }
     
 })
+
+//--------------------------------About-Contact-explore-------------------------------------------------
+
+
 app.get("/about",async (req,res)=>{
     res.render("about")
 })
@@ -134,16 +187,21 @@ app.get("/hospital",async (req,res)=>{
     res.render("hospital")
 })
 
-app.get("/explore",async (req,res)=>{
-    res.render("explore")
-})
-app.get("/signup_hospital",async (req,res)=>{
-    res.render("signup_hospital",{message:req.flash('msg')})
-})
+//---------------------------------------------------------------------------------
+
+
 app.get("/hospitaldetails",isAuth,async(req,res)=>{
     console.log(req.session.loginhid)
     res.render("hospitaldetails")
 })
+
+//---------------------------------------------------------------------------------
+
+app.get("/signup_hospital",async (req,res)=>{
+    res.render("signup_hospital",{message:req.flash('msg')})
+})
+
+
 app.post("/signup_hospital", async (req,res)=>{
         try{
             const chk= await hospinfo.findOne({email:req.body.email})
@@ -176,13 +234,20 @@ app.post("/signup_hospital", async (req,res)=>{
         }
     }
     catch{
-        res.send("server error")
+        req.flash('msg','Enter Full details')
+        res.redirect("signup_hospital")
     }
 }
 )
+
+//---------------------------------------------------------------------------------
+
+
 app.get("/signup_user",async (req,res)=>{
     res.render("signup_user",{message:req.flash('msg')})
 })
+
+
 app.post("/signup_user", async (req,res)=>{
    try{
     const chk= await hospinfo.findOne({email:req.body.email})
@@ -213,10 +278,15 @@ app.post("/signup_user", async (req,res)=>{
     }
 }
 catch{
-    res.send("server error")
+    req.flash('msg','Enter Full details')
+    res.redirect("signup_user")
 }
-}
-)
+})
+
+
+//-------------------------------Equipment--------------------------------------------------
+
+
 app.get("/equipments",isAuth,async(req,res)=>{
     equipmentinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
         console.log(data)
@@ -225,6 +295,8 @@ app.get("/equipments",isAuth,async(req,res)=>{
 console.log(y)
     })
 })
+
+
 app.post("/equipments", async(req,res)=>{
     const newequipmentreg=new equipmentinfo({
         hospitalid:req.session.loginhid,
@@ -235,9 +307,21 @@ app.post("/equipments", async(req,res)=>{
     await equipmentinfo.insertMany([newequipmentreg])
     res.redirect("equipments")
 })
+
+
+//------------------------------IcuBeds---------------------------------------------------
+
+
 app.get("/icubeds",isAuth,async(req,res)=>{
-    res.render("icubeds",{message:req.flash('msg')})
+    icubedinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
+    console.log(data)
+        res.render("icubeds",{message:req.flash('msg'),data:data})
+    }).catch((y)=>{
+console.log(y)
+    })
 })
+
+
 app.post("/icubeds",async(req,res)=>{
     const newicubedreg=new icubedinfo({
         hospitalid:req.session.loginhid,
@@ -248,9 +332,20 @@ app.post("/icubeds",async(req,res)=>{
     req.flash('msg','Successfully Registered')
     res.redirect("icubeds")
 })
+
+//----------------------------Appointment-----------------------------------------------------
+
+
 app.get("/appointments",isAuth,async(req,res)=>{
-    res.render("appointments",{message:req.flash('msg')})
+    appointmentinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
+        console.log(data)
+            res.render("appointments",{message:req.flash('msg'),data:data})
+        }).catch((y)=>{
+    console.log(y)
+        })
 })
+
+
 app.post("/appointments", async(req,res)=>{
     const newappointmentreg=new appointmentinfo({
         hospitalid:req.session.loginhid,
@@ -264,24 +359,49 @@ app.post("/appointments", async(req,res)=>{
     req.flash('msg','Successfully Registered')
     res.redirect("appointments")
 })
+
+
+//-------------------------------Beds--------------------------------------------------
+
+
 app.get("/beds",isAuth,async(req,res)=>{
-    res.render("beds",{message:req.flash('msg')})
+    bedinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
+        console.log(data)
+            res.render("beds",{message:req.flash('msg'),data:data})
+        }).catch((y)=>{
+    console.log(y)
+        })
 })
+
+
 app.post("/beds", async(req,res)=>{
+    
     const newbedreg=new bedinfo({
         hospitalid:req.session.loginhid,
         publicward:req.body.publicward,
         privateward:req.body.privateward,
-        wards:req.body.wards,
-        disease:req.body.disease
+        wards:req.body.ward,
+        disease:req.body.disease,
     })
     await bedinfo.insertMany([newbedreg])
     req.flash('msg','Successfully Registered')
     res.redirect("beds")
 })
+
+
+//-------------------------------------------------------------------------------
+
+
 app.get("/surgeries",isAuth,async(req,res)=>{
-    res.render("surgeries",{message:req.flash('msg')})
+    surgeryinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
+        console.log(data)
+        res.render("surgeries",{message:req.flash('msg'),data:data})
+    }).catch((y)=>{
+console.log(y)
+    })
 })
+
+
 app.post("/surgeries", async(req,res)=>{
     const newsurgeryreg=new surgeryinfo({
         hospitalid:req.session.loginhid,
@@ -295,12 +415,23 @@ app.post("/surgeries", async(req,res)=>{
     req.flash('msg','Successfully Registered')
     res.redirect("surgeries")
 })
+
+
+//---------------------------------------------------------------------------------
+
+
 app.post("/logout",(req,res)=>{
     req.session.destroy((err)=>{
         if(err)throw err;
         res.redirect("/");
     })
 })
+
+
+//---------------------------------------------------------------------------------
+
 app.listen(port,hostname,()=>{
 console.log("Server is Running!")
 })
+
+
