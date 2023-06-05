@@ -13,10 +13,12 @@ const equipmentinfo=require("../database/equipmentschema")
 const icubedinfo=require("../database/icubedsschema")
 const appointmentinfo=require("../database/appointmentsschema")
 const bedinfo=require("../database/bedschema")
+const flash=require("connect-flash")
 const surgeryinfo=require("../database/surgeryschema")
 const mongosession=require("connect-mongodb-session")(session)
+const ejs=require("ejs")
 app.use(express.json())
-
+app.use(flash())
 app.use(express.urlencoded({extended:false}))
 
 const store=new mongosession({
@@ -37,7 +39,7 @@ app.use(express.static("../public"))
 
 
 
-app.set("view engine","hbs")
+app.set("view engine","ejs")
 app.set("views",templatepath)
 
 
@@ -61,24 +63,28 @@ app.get("/",async (req,res)=>{
 })
 
 app.get("/login_hospital",async (req,res)=>{
-    res.render("login_hospital")
+    res.render("login_hospital",{message:req.flash('msg')})
 })
 app.post("/login_hospital",async (req,res)=>{
     try{
         const chk = await hospinfo.findOne({email:req.body.email})
-        if(!chk){
-        res.redirect("login")}
-        const ismatch=await bcrypt.compare(req.body.password,chk.password)
-        if(ismatch){
-            req.session.isAuth=true;
-            req.session.loginhid=chk._id
-            res.redirect("hospitaldetails")}
+        if(chk){
+            const ismatch=await bcrypt.compare(req.body.password,chk.password)
+            if(ismatch){
+                req.session.isAuth=true;
+                req.session.loginhid=chk._id
+                res.redirect("hospitaldetails")}
+                else{
+                req.flash('msg','Wrong Password')
+                res.redirect("login_hospital")
+            }}
             else{
-                res.send("wrong password")
-            }
+        req.flash('msg','Wrong Username')
+        res.redirect("login_hospital")
+    }
     }
     catch{
-        res.send("wrong details")
+        res.send("Server not found")
     }
 
 })
@@ -88,33 +94,38 @@ app.get("/home",isAuth,async (req,res)=>{
    
 })
 app.get("/login_user",async (req,res)=>{
-    res.render("login_user")
+    res.render("login_user",{message:req.flash('msg')})
 })
 app.post("/login_user",async (req,res)=>{
     try{
         const chk = await userinfo.findOne({email:req.body.email})
-        if(!chk){
-        res.redirect("login")}
-        const ismatch=await bcrypt.compare(req.body.password,chk.password)
+        if(chk){
+            const ismatch=await bcrypt.compare(req.body.password,chk.password)
         if(ismatch){
             req.session.loginuid=chk.id;
             console.log()
             req.session.isAuth=true;
             res.redirect("home")}
             else{
-                res.send("wrong password")
-            }
-    }
-    catch{
-        res.send("wrong details")
-    }
+                req.flash('msg','Wrong Password')
+                res.redirect("login_user")
+            }}
+            else{
+            req.flash('msg','Wrong Username')
+        res.redirect("login_user")}
+        
+        }
+        catch{
+            
+            res.send("server not found")
+        }
     
 })
 app.get("/about",async (req,res)=>{
     res.render("about")
 })
 app.get("/contactUs",async (req,res)=>{
-    res.render("contactUs")
+    res.render("contactUs",{message:req.flash('msg')})
 })
 app.get("/explore",async (req,res)=>{
     res.render("explore")
@@ -127,14 +138,17 @@ app.get("/explore",async (req,res)=>{
     res.render("explore")
 })
 app.get("/signup_hospital",async (req,res)=>{
-    res.render("signup_hospital")
+    res.render("signup_hospital",{message:req.flash('msg')})
 })
 app.get("/hospitaldetails",isAuth,async(req,res)=>{
     console.log(req.session.loginhid)
     res.render("hospitaldetails")
 })
 app.post("/signup_hospital", async (req,res)=>{
-        const hashpwd= await bcrypt.hash(req.body.password,12)
+        try{
+            const chk= await hospinfo.findOne({email:req.body.email})
+            if(!chk){
+            const hashpwd= await bcrypt.hash(req.body.password,12)
         const cpass=await bcrypt.compare(req.body.confirmpassword,hashpwd)
         if(cpass){
             const newhospreg=new hospinfo({
@@ -149,19 +163,30 @@ app.post("/signup_hospital", async (req,res)=>{
                 address:req.body.address
             })
             await hospinfo.insertMany([newhospreg])
-        
             res.redirect("login_hospital")
             
         }
-    else{   
-        res.send("password is not matching")
+        else{
+            req.flash('msg','Re-enter password')
+            res.redirect("Signup_hospital")
+        }}
+        else{
+            req.flash('msg','Already Registered')
+        res.redirect("signup_hospital")
+        }
+    }
+    catch{
+        res.send("server error")
     }
 }
 )
 app.get("/signup_user",async (req,res)=>{
-    res.render("signup_user")
+    res.render("signup_user",{message:req.flash('msg')})
 })
 app.post("/signup_user", async (req,res)=>{
+   try{
+    const chk= await hospinfo.findOne({email:req.body.email})
+    if(!chk){
     const hashpwd= await bcrypt.hash(req.body.password,12)
     const cpass=await bcrypt.compare(req.body.confirmpassword,hashpwd)
     
@@ -179,13 +204,26 @@ app.post("/signup_user", async (req,res)=>{
         await userinfo.insertMany([newuserreg])
         res.redirect("login_user")
     }
-else{   
-    res.send("password is not matching")
+    else{
+        req.flash('msg','Re-enter Password')
+        res.redirect("signup_user")
+    }}else{
+        req.flash('msg','Already Registered')
+    res.redirect("signup_user")
+    }
+}
+catch{
+    res.send("server error")
 }
 }
 )
 app.get("/equipments",isAuth,async(req,res)=>{
-    res.render("equipments")
+    equipmentinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
+        console.log(data)
+        res.render("equipments",{message:req.flash('msg'),data:data})
+    }).catch((y)=>{
+console.log(y)
+    })
 })
 app.post("/equipments", async(req,res)=>{
     const newequipmentreg=new equipmentinfo({
@@ -198,7 +236,7 @@ app.post("/equipments", async(req,res)=>{
     res.redirect("equipments")
 })
 app.get("/icubeds",isAuth,async(req,res)=>{
-    res.render("icubeds")
+    res.render("icubeds",{message:req.flash('msg')})
 })
 app.post("/icubeds",async(req,res)=>{
     const newicubedreg=new icubedinfo({
@@ -207,10 +245,11 @@ app.post("/icubeds",async(req,res)=>{
         beds:req.body.beds
     })
     await icubedinfo.insertMany([newicubedreg])
+    req.flash('msg','Successfully Registered')
     res.redirect("icubeds")
 })
 app.get("/appointments",isAuth,async(req,res)=>{
-    res.render("appointments")
+    res.render("appointments",{message:req.flash('msg')})
 })
 app.post("/appointments", async(req,res)=>{
     const newappointmentreg=new appointmentinfo({
@@ -222,10 +261,11 @@ app.post("/appointments", async(req,res)=>{
         bookingslot:req.body.bookingslot
     })
     await appointmentinfo.insertMany([newappointmentreg])
+    req.flash('msg','Successfully Registered')
     res.redirect("appointments")
 })
 app.get("/beds",isAuth,async(req,res)=>{
-    res.render("beds")
+    res.render("beds",{message:req.flash('msg')})
 })
 app.post("/beds", async(req,res)=>{
     const newbedreg=new bedinfo({
@@ -236,10 +276,11 @@ app.post("/beds", async(req,res)=>{
         disease:req.body.disease
     })
     await bedinfo.insertMany([newbedreg])
+    req.flash('msg','Successfully Registered')
     res.redirect("beds")
 })
 app.get("/surgeries",isAuth,async(req,res)=>{
-    res.render("surgeries")
+    res.render("surgeries",{message:req.flash('msg')})
 })
 app.post("/surgeries", async(req,res)=>{
     const newsurgeryreg=new surgeryinfo({
@@ -251,6 +292,7 @@ app.post("/surgeries", async(req,res)=>{
        
     })
     await surgeryinfo.insertMany([newsurgeryreg])
+    req.flash('msg','Successfully Registered')
     res.redirect("surgeries")
 })
 app.post("/logout",(req,res)=>{

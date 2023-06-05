@@ -28,11 +28,16 @@ var appointmentinfo = require("../database/appointmentsschema");
 
 var bedinfo = require("../database/bedschema");
 
+var flash = require("connect-flash");
+
 var surgeryinfo = require("../database/surgeryschema");
 
 var mongosession = require("connect-mongodb-session")(session);
 
+var ejs = require("ejs");
+
 app.use(express.json());
+app.use(flash());
 app.use(express.urlencoded({
   extended: false
 }));
@@ -48,7 +53,7 @@ app.use(session({
 }));
 var templatepath = path.join(__dirname, '../public');
 app.use(express["static"]("../public"));
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", templatepath);
 
 var loginhid = function loginhid(req, res, next) {
@@ -100,7 +105,9 @@ app.get("/login_hospital", function _callee2(req, res) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          res.render("login_hospital");
+          res.render("login_hospital", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -125,7 +132,8 @@ app.post("/login_hospital", function _callee3(req, res) {
           chk = _context4.sent;
 
           if (!chk) {
-            res.redirect("login");
+            _context4.next = 11;
+            break;
           }
 
           _context4.next = 7;
@@ -139,23 +147,32 @@ app.post("/login_hospital", function _callee3(req, res) {
             req.session.loginhid = chk._id;
             res.redirect("hospitaldetails");
           } else {
-            res.send("wrong password");
+            req.flash('msg', 'Wrong Password');
+            res.redirect("login_hospital");
           }
 
-          _context4.next = 14;
+          _context4.next = 13;
           break;
 
         case 11:
-          _context4.prev = 11;
-          _context4.t0 = _context4["catch"](0);
-          res.send("wrong details");
+          req.flash('msg', 'Wrong Username');
+          res.redirect("login_hospital");
 
-        case 14:
+        case 13:
+          _context4.next = 18;
+          break;
+
+        case 15:
+          _context4.prev = 15;
+          _context4.t0 = _context4["catch"](0);
+          res.send("Server not found");
+
+        case 18:
         case "end":
           return _context4.stop();
       }
     }
-  }, null, null, [[0, 11]]);
+  }, null, null, [[0, 15]]);
 });
 app.get("/home", isAuth, function _callee4(req, res) {
   return regeneratorRuntime.async(function _callee4$(_context5) {
@@ -176,7 +193,9 @@ app.get("/login_user", function _callee5(req, res) {
     while (1) {
       switch (_context6.prev = _context6.next) {
         case 0:
-          res.render("login_user");
+          res.render("login_user", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -201,7 +220,8 @@ app.post("/login_user", function _callee6(req, res) {
           chk = _context7.sent;
 
           if (!chk) {
-            res.redirect("login");
+            _context7.next = 11;
+            break;
           }
 
           _context7.next = 7;
@@ -216,23 +236,32 @@ app.post("/login_user", function _callee6(req, res) {
             req.session.isAuth = true;
             res.redirect("home");
           } else {
-            res.send("wrong password");
+            req.flash('msg', 'Wrong Password');
+            res.redirect("login_user");
           }
 
-          _context7.next = 14;
+          _context7.next = 13;
           break;
 
         case 11:
-          _context7.prev = 11;
-          _context7.t0 = _context7["catch"](0);
-          res.send("wrong details");
+          req.flash('msg', 'Wrong Username');
+          res.redirect("login_user");
 
-        case 14:
+        case 13:
+          _context7.next = 18;
+          break;
+
+        case 15:
+          _context7.prev = 15;
+          _context7.t0 = _context7["catch"](0);
+          res.send("server not found");
+
+        case 18:
         case "end":
           return _context7.stop();
       }
     }
-  }, null, null, [[0, 11]]);
+  }, null, null, [[0, 15]]);
 });
 app.get("/about", function _callee7(req, res) {
   return regeneratorRuntime.async(function _callee7$(_context8) {
@@ -253,7 +282,9 @@ app.get("/contactUs", function _callee8(req, res) {
     while (1) {
       switch (_context9.prev = _context9.next) {
         case 0:
-          res.render("contactUs");
+          res.render("contactUs", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -309,7 +340,9 @@ app.get("/signup_hospital", function _callee12(req, res) {
     while (1) {
       switch (_context13.prev = _context13.next) {
         case 0:
-          res.render("signup_hospital");
+          res.render("signup_hospital", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -334,24 +367,38 @@ app.get("/hospitaldetails", isAuth, function _callee13(req, res) {
   });
 });
 app.post("/signup_hospital", function _callee14(req, res) {
-  var hashpwd, cpass, newhospreg;
+  var chk, hashpwd, cpass, newhospreg;
   return regeneratorRuntime.async(function _callee14$(_context15) {
     while (1) {
       switch (_context15.prev = _context15.next) {
         case 0:
-          _context15.next = 2;
+          _context15.prev = 0;
+          _context15.next = 3;
+          return regeneratorRuntime.awrap(hospinfo.findOne({
+            email: req.body.email
+          }));
+
+        case 3:
+          chk = _context15.sent;
+
+          if (chk) {
+            _context15.next = 22;
+            break;
+          }
+
+          _context15.next = 7;
           return regeneratorRuntime.awrap(bcrypt.hash(req.body.password, 12));
 
-        case 2:
+        case 7:
           hashpwd = _context15.sent;
-          _context15.next = 5;
+          _context15.next = 10;
           return regeneratorRuntime.awrap(bcrypt.compare(req.body.confirmpassword, hashpwd));
 
-        case 5:
+        case 10:
           cpass = _context15.sent;
 
           if (!cpass) {
-            _context15.next = 13;
+            _context15.next = 18;
             break;
           }
 
@@ -366,30 +413,50 @@ app.post("/signup_hospital", function _callee14(req, res) {
             description: "hlo",
             address: req.body.address
           });
-          _context15.next = 10;
+          _context15.next = 15;
           return regeneratorRuntime.awrap(hospinfo.insertMany([newhospreg]));
 
-        case 10:
+        case 15:
           res.redirect("login_hospital");
-          _context15.next = 14;
+          _context15.next = 20;
           break;
 
-        case 13:
-          res.send("password is not matching");
+        case 18:
+          req.flash('msg', 'Re-enter password');
+          res.redirect("Signup_hospital");
 
-        case 14:
+        case 20:
+          _context15.next = 24;
+          break;
+
+        case 22:
+          req.flash('msg', 'Already Registered');
+          res.redirect("signup_hospital");
+
+        case 24:
+          _context15.next = 29;
+          break;
+
+        case 26:
+          _context15.prev = 26;
+          _context15.t0 = _context15["catch"](0);
+          res.send("server error");
+
+        case 29:
         case "end":
           return _context15.stop();
       }
     }
-  });
+  }, null, null, [[0, 26]]);
 });
 app.get("/signup_user", function _callee15(req, res) {
   return regeneratorRuntime.async(function _callee15$(_context16) {
     while (1) {
       switch (_context16.prev = _context16.next) {
         case 0:
-          res.render("signup_user");
+          res.render("signup_user", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -399,24 +466,38 @@ app.get("/signup_user", function _callee15(req, res) {
   });
 });
 app.post("/signup_user", function _callee16(req, res) {
-  var hashpwd, cpass, newuserreg;
+  var chk, hashpwd, cpass, newuserreg;
   return regeneratorRuntime.async(function _callee16$(_context17) {
     while (1) {
       switch (_context17.prev = _context17.next) {
         case 0:
-          _context17.next = 2;
+          _context17.prev = 0;
+          _context17.next = 3;
+          return regeneratorRuntime.awrap(hospinfo.findOne({
+            email: req.body.email
+          }));
+
+        case 3:
+          chk = _context17.sent;
+
+          if (chk) {
+            _context17.next = 22;
+            break;
+          }
+
+          _context17.next = 7;
           return regeneratorRuntime.awrap(bcrypt.hash(req.body.password, 12));
 
-        case 2:
+        case 7:
           hashpwd = _context17.sent;
-          _context17.next = 5;
+          _context17.next = 10;
           return regeneratorRuntime.awrap(bcrypt.compare(req.body.confirmpassword, hashpwd));
 
-        case 5:
+        case 10:
           cpass = _context17.sent;
 
           if (!cpass) {
-            _context17.next = 13;
+            _context17.next = 18;
             break;
           }
 
@@ -430,30 +511,58 @@ app.post("/signup_user", function _callee16(req, res) {
             password: hashpwd,
             address: req.body.address
           });
-          _context17.next = 10;
+          _context17.next = 15;
           return regeneratorRuntime.awrap(userinfo.insertMany([newuserreg]));
 
-        case 10:
+        case 15:
           res.redirect("login_user");
-          _context17.next = 14;
+          _context17.next = 20;
           break;
 
-        case 13:
-          res.send("password is not matching");
+        case 18:
+          req.flash('msg', 'Re-enter Password');
+          res.redirect("signup_user");
 
-        case 14:
+        case 20:
+          _context17.next = 24;
+          break;
+
+        case 22:
+          req.flash('msg', 'Already Registered');
+          res.redirect("signup_user");
+
+        case 24:
+          _context17.next = 29;
+          break;
+
+        case 26:
+          _context17.prev = 26;
+          _context17.t0 = _context17["catch"](0);
+          res.send("server error");
+
+        case 29:
         case "end":
           return _context17.stop();
       }
     }
-  });
+  }, null, null, [[0, 26]]);
 });
 app.get("/equipments", isAuth, function _callee17(req, res) {
   return regeneratorRuntime.async(function _callee17$(_context18) {
     while (1) {
       switch (_context18.prev = _context18.next) {
         case 0:
-          res.render("equipments");
+          equipmentinfo.find({
+            hospitalid: req.session.loginhid
+          }).then(function (data) {
+            console.log(data);
+            res.render("equipments", {
+              message: req.flash('msg'),
+              data: data
+            });
+          })["catch"](function (y) {
+            console.log(y);
+          });
 
         case 1:
         case "end":
@@ -492,7 +601,9 @@ app.get("/icubeds", isAuth, function _callee19(req, res) {
     while (1) {
       switch (_context20.prev = _context20.next) {
         case 0:
-          res.render("icubeds");
+          res.render("icubeds", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -516,9 +627,10 @@ app.post("/icubeds", function _callee20(req, res) {
           return regeneratorRuntime.awrap(icubedinfo.insertMany([newicubedreg]));
 
         case 3:
+          req.flash('msg', 'Successfully Registered');
           res.redirect("icubeds");
 
-        case 4:
+        case 5:
         case "end":
           return _context21.stop();
       }
@@ -530,7 +642,9 @@ app.get("/appointments", isAuth, function _callee21(req, res) {
     while (1) {
       switch (_context22.prev = _context22.next) {
         case 0:
-          res.render("appointments");
+          res.render("appointments", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -557,9 +671,10 @@ app.post("/appointments", function _callee22(req, res) {
           return regeneratorRuntime.awrap(appointmentinfo.insertMany([newappointmentreg]));
 
         case 3:
+          req.flash('msg', 'Successfully Registered');
           res.redirect("appointments");
 
-        case 4:
+        case 5:
         case "end":
           return _context23.stop();
       }
@@ -571,7 +686,9 @@ app.get("/beds", isAuth, function _callee23(req, res) {
     while (1) {
       switch (_context24.prev = _context24.next) {
         case 0:
-          res.render("beds");
+          res.render("beds", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -597,9 +714,10 @@ app.post("/beds", function _callee24(req, res) {
           return regeneratorRuntime.awrap(bedinfo.insertMany([newbedreg]));
 
         case 3:
+          req.flash('msg', 'Successfully Registered');
           res.redirect("beds");
 
-        case 4:
+        case 5:
         case "end":
           return _context25.stop();
       }
@@ -611,7 +729,9 @@ app.get("/surgeries", isAuth, function _callee25(req, res) {
     while (1) {
       switch (_context26.prev = _context26.next) {
         case 0:
-          res.render("surgeries");
+          res.render("surgeries", {
+            message: req.flash('msg')
+          });
 
         case 1:
         case "end":
@@ -637,9 +757,10 @@ app.post("/surgeries", function _callee26(req, res) {
           return regeneratorRuntime.awrap(surgeryinfo.insertMany([newsurgeryreg]));
 
         case 3:
+          req.flash('msg', 'Successfully Registered');
           res.redirect("surgeries");
 
-        case 4:
+        case 5:
         case "end":
           return _context27.stop();
       }
