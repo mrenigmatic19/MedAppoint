@@ -28,6 +28,7 @@ const icubedinfo    =   require("../database/icubedsschema")
 const appointmentinfo =  require("../database/appointmentsschema")
 const bedinfo       =   require("../database/bedschema")
 const surgeryinfo   =   require("../database/surgeryschema")
+const {getDistance}   =   require("./getdistance")
 
 
 //--------------------------------Database Link-----------------------------------------------
@@ -37,7 +38,6 @@ const store=new mongosession({
     uri:"mongodb://127.0.0.1:27017/MedAppoint",
     collection:"mysessions"
 })
-
 
 
 //---------------------------------Middleware--------------------------------------------------
@@ -66,15 +66,16 @@ app.set("views",templatepath)
 
 
 const loginuid=async(req,res,next)=>{
-    const details= await userinfo.finOne(_id=req.session.loginhid)
     next()
 }
 
 const loginhid=async(req,res,next)=>{
-    const details= await hospinfo.finOne(_id=req.session.loginhid)
     next()
 }
 
+const detail=async(req,res,next)=>{
+    next()
+}
 
 //----------------------------------Authorization---------------------------------------------
 
@@ -89,8 +90,106 @@ const isAuth=(req,res,next)=>{
 }
 
 
+//----------------------------------Searching Algorithm----------------------------------------
 
-//--------------------------------------Index-------------------------------------------------
+
+app.get("/searching",isAuth,async(req,res)=>{
+    const array=[]
+    if(req.session.detail){
+    const details=req.session.detail
+    const user= await userinfo.find({_id:req.session.loginuid})
+   
+    const pin1=user[0].pin
+    for(let i=0;i<details.length;i++){
+        const h=await hospinfo.find({_id:details[i].hospitalid})
+        const pin2=h[0].pin
+        const distance=await getDistance(pin1,pin2)
+        array.push([details[i],h[0],distance])
+    }
+    
+    for(let i = 0; i < array.length; i++) {
+        let min = i;
+        for(let j = i+1; j < array.length; j++){
+            if(array[j][2] < array[min][2]) {
+                min=j; 
+            }
+         }
+         if (min != i) {
+             
+             let tmp = array[i]; 
+             array[i] = array[min];
+             array[min] = tmp;      
+        }
+    }
+  
+}
+    res.render("searching",{message:req.flash('msg'),array})
+})
+
+app.post("/searching",async(req,res)=>{
+    try{
+            const val=req.body.value
+            if(val){
+                const string=req.body.search
+                if(string){
+                const array=string.split(' ')
+                let a=[]
+                for(let i=0;i<array.length;i++){
+                    if(val==4){
+                    const table=await appointmentinfo.find({specialist:array[i]})
+                    table.forEach((x)=>{
+                        a.push(x)
+                    })
+                    }
+                    else if(val==1){
+                        const table=await equipmentinfo.find({$or:[{instrumentname:array[i]},{type:array[i]}]})
+                        table.forEach((x)=>{
+                            a.push(x)
+                        })
+                        
+                    }
+                    else if(val==0){
+                        const table=await icubedinfo.find({})
+                        table.forEach((x)=>{
+                            a.push(x)
+                        })
+                    }
+                    else if(val==3){
+                        const table=await bedinfo.find({disease:array[i]})
+                        table.forEach((x)=>{
+                            a.push(x)
+                        })
+                    }
+                    else{
+                        const table=await surgeryinfo.find({specialist:array[i]})
+                        table.forEach((x)=>{
+                            a.push(x)
+                        })
+                    }
+                }
+                req.flash('msg','Searching Successfull')
+                    req.session.detail=a
+                    res.redirect("searching")                   
+              
+            }
+            else{
+                req.flash('msg','Empty Search')
+                res.redirect("searching")
+            }
+            }
+            else{
+                req.flash('msg','Select respective field')
+                res.redirect("searching")
+            }
+    }
+    catch{
+        req.flash('msg','Search Something')
+        res.redirect("searching")
+    }
+})
+
+
+//--------------------------------------Index--------------------------------------------------
 
 
 app.get("/",async (req,res)=>{
@@ -304,6 +403,7 @@ app.post("/equipments", async(req,res)=>{
         availability:req.body.availability
     })
     await equipmentinfo.insertMany([newequipmentreg])
+    req.flash('msg','Successfully Registered')
     res.redirect("equipments")
 })
 

@@ -100,6 +100,11 @@
 <form action="/equipments" method="POST">
     <div class="container">
       <h3>Equipments</h3>
+      <% if(message.length>0) {%>
+        <div class="alert alert-success">
+          <%=message%>
+        </div>
+        <%}%>
       
       <ul class="list-group list-group-horizontal k1">
         <li class="list-group-item k card border-warning">Equipments Name</li>

@@ -126,10 +126,10 @@
       <h2>Login Here</h2>
       <br>
       <% if(message.length>0) {%>
-      <div class="alert alert-danger">
-        <%=message%>
-      </div>
-      <%}%>
+        <div class="alert alert-danger">
+          <%=message%>
+        </div>
+        <%}%>
       <form action="/login_user" method="POST">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Email id</span>

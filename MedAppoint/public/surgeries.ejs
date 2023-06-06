@@ -98,6 +98,11 @@
       </div>
      </nav>
 <form action="/surgeries" method="POST">
+  <% if(message.length>0) {%>
+    <div class="alert alert-success">
+      <%=message%>
+    </div>
+    <%}%>
   <div class="container mt-4">
     <div><h3>Surgeries</h3></div>
     <ul class="list-group list-group-horizontal k1">
@@ -130,7 +135,7 @@
           <td>Specialisation</td>
           <td>Year of Experience</td>
           <td>Price</td>
-        ]
+        
           <td>Modify</td>
         </tr>
         <% data.forEach((x)=>{ %>

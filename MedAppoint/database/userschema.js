@@ -23,7 +23,7 @@ const userschema = new mongoose.Schema({
         unique:false
     },
     pin: {
-        type: Number,
+        type: String,
         required:true,
         unique:false
     },
