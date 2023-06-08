@@ -121,7 +121,7 @@ app.get("/searching",isAuth,async(req,res)=>{
              array[min] = tmp;      
         }
     }
-  
+  console.log(array)
 }
     res.render("searching",{message:req.flash('msg'),array})
 })
@@ -349,7 +349,7 @@ app.get("/signup_user",async (req,res)=>{
 
 app.post("/signup_user", async (req,res)=>{
    try{
-    const chk= await hospinfo.findOne({email:req.body.email})
+    const chk= await userinfo.findOne({email:req.body.email})
     if(!chk){
     const hashpwd= await bcrypt.hash(req.body.password,12)
     const cpass=await bcrypt.compare(req.body.confirmpassword,hashpwd)

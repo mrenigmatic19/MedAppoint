@@ -128,7 +128,7 @@ app.get("/searching", isAuth, function _callee(req, res) {
           array = [];
 
           if (!req.session.detail) {
-            _context4.next = 21;
+            _context4.next = 22;
             break;
           }
 
@@ -186,13 +186,15 @@ app.get("/searching", isAuth, function _callee(req, res) {
             }
           }
 
-        case 21:
+          console.log(array);
+
+        case 22:
           res.render("searching", {
             message: req.flash('msg'),
             array: array
           });
 
-        case 22:
+        case 23:
         case "end":
           return _context4.stop();
       }
@@ -769,7 +771,7 @@ app.post("/signup_user", function _callee18(req, res) {
         case 0:
           _context21.prev = 0;
           _context21.next = 3;
-          return regeneratorRuntime.awrap(hospinfo.findOne({
+          return regeneratorRuntime.awrap(userinfo.findOne({
             email: req.body.email
           }));
 
