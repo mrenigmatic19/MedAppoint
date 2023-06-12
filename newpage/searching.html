@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LANDAPP</title>
+  <!-- -------- anime css ------ -->
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <!-- --------- tiny slider css ------ -->
+  <link rel="stylesheet" href="assets/css/tiny-slider.css">
+  <!-- --------- font awsome css ------ -->
+  <link rel="stylesheet" href="assets/css/all.css">
+  <!-- -------- venobox css ------- -->
+  <link rel="stylesheet" href="assets/css/venobox.css" type="text/css" media="screen" />
+  <!-- ---- Bootstrap css--- -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- ---------- default css --------- -->
+  <link rel="stylesheet" href="assets/css/default.css">
+  <!-- --- style css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- --------- preloader ------------ -->
+  <div class="preloader">
+    <div class="loader">
+      <div class="spinner">
+        <div class="spinner-container">
+          <div class="spinner-rotator">
+            <div class="spinner-left">
+              <div class="spinner-circle"></div>
+            </div>
+            <div class="spinner-right">
+              <div class="spinner-circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-------   Header star ------>
+  <header class="header-area">
+    <div class="navbar-area">
+      <!---- navbar star--->
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img class="image" src="assets/img/header/logo/landapp-logo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" data-scroll-nav="0" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-scroll-nav="1" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-scroll-nav="2" href="#">About</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link" data-scroll-nav="4" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-scroll-nav="5" href="#">FAQ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-scroll-nav="6" href="#">Download</a>
+                </li>
+                <li class="nav-item dropdown ">
+                  <a
+                    class="nav-link dropdown-toggle f"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="true"
+                  >
+                    Login
+                  </a>
+                  <ul class="dropdown-menu f">
+                    <li><a class="dropdown-item" href="login_user">User</a></li>
+                    <li>
+                      <a class="dropdown-item" href="login_hospital">Hospital</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown ">
+                  <a
+                    class="nav-link dropdown-toggle f"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="true"
+                  >
+                    Sign Up
+                  </a>
+                  <ul class="dropdown-menu f">
+                    <li><a class="dropdown-item" href="login_user">User</a></li>
+                    <li>
+                      <a class="dropdown-item" href="login_hospital">Hospital</a>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!---- navbar end--->
+    <div class="header-hero" data-scroll-index="0">
+      <!---- home star ------>
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+      <div class="shape shape-6"></div>
+      <div class="container bb">
+    
+        <form action="/searching" method="post">
+               
+            <div class="col-lg-10" style="margin:auto">
+                <div class="dropdown searchh" style="margin-top: 40px;">
+                    <table style="width:80vh;margin:auto;background-color: white;border-radius:30px;height: 40px ;">
+                      <tr>
+                        <td><input class="btn btn-primary"  value="0" type="radio" name="value">ICU</td>
+                        <td><input class="btn btn-primary" value="1" type="radio" name="value">Apparatus</td>
+                        <td> <input class="btn btn-primary" value="2" type="radio" name="value">Regular Checkups</td>
+                        <td><input class="btn btn-primary" value="3" type="radio" name="value">Surgery</td>
+                        <td><input class="btn btn-primary" value="4" type="radio" name="value">Appointment</td>
+                      </tr>
+                    </table>
+                  </div>
+          <div class="input-group rounded" style="margin-top: 40px;" >
+            
+            <input type="search" class="form-control rounded" placeholder="Search" name="search" aria-label="Search" aria-describedby="search-addon" />
+           
+             <input type="submit" class="btn btn-primary" style="margin:2px" value="submit">                
+          </div>
+          
+        </form>
+
+      <div class="container">
+        <div class="header-shape-1"></div>
+        <div class="header-shape-2">
+          <img src="assets/img/header/header-shape-2.svg" alt="">
+        </div>
+      </div>
+      </div>
+    </div>
+    <!---- home star ------>
+  </header>
+  <footer class="footer-area">
+    <div class="footer-shape shape-1"></div>
+    <div class="footer-shape shape-2"></div>
+    <div class="footer-shape shape-3"></div>
+    <div class="footer-shape shape-4"></div>
+    <div class="footer-shape shape-5"></div>
+    <div class="footer-shape shape-6"></div>
+    <div class="footer-widget pt-30 pb-80">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-about mt-50">
+              <a href="" class="logo">
+                <img src="assets/img/header/logo/landapp-logo.png" alt="">
+              </a>
+              <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quaerat quo obcaecati
+                excepturi, iste nisi.</p>
+              <ul class="social">
+                <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-6">
+            <div class="footer-link d-flex flex-wrap">
+              <div class="footer-link-wrapper mt-45">
+                <div class="footer-title">
+                  <h4 class="title">Quick Links</h4>
+                </div>
+                <ul class="link">
+                  <li><a href="">Home</a></li>
+                  <li><a href="">Features</a></li>
+                  <li><a href="">About</a></li>
+                  <li><a href="">Testimonial</a></li>
+                  <li><a href="">Pricing</a></li>
+                  <li><a href="">Download</a></li>
+                </ul>
+              </div>
+              <div class="footer-link-wrapper mt-45">
+                <div class="footer-title">
+                  <h4 class="title">Support</h4>
+                </div>
+                <ul class="link">
+                  <li><a href="">FAQ</a></li>
+                  <li><a href="">Privacy Policy</a></li>
+                  <li><a href="">Terms OF Use</a></li>
+                  <li><a href="">Legal</a></li>
+                  <li><a href="">Site Map</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-contact mt-45">
+              <div class="footer-title">
+                <h4 class="title">Quick Links</h4>
+              </div>
+              <ul class="contact-list">
+                <li>
+                  <div class="contact-info">
+                    <div class="info-content media-body">
+                      <p class="text"><i class="fas fa-phone-alt"></i>
+                        +809272561823 </p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-info">
+                    <div class="info-content media-body">
+                      <p class="text"><a href=""><i class="far fa-envelope"></i>
+                          landapp@gmail.com </a></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-info">
+                    <div class="info-content media-body">
+                      <p class="text"><a href=""><i class="fas fa-globe"></i>
+                          www.landapp.com </a></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-info">
+                    <div class="info-content media-body">
+                      <p class="text"><i class="fas fa-map-marker-alt"></i>
+                        123 stree now york city, united states of america 750 </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="lo-lg-12">
+            <div class="copyright">
+              <div class="copyright-text text-center">
+                <p class="text">Copyright &#169; 2020 <a href="">landapp</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- --------------Footer Section End ------- -->
+
+
+
+
+
+  <!-- ---- jquery Js ---- -->
+  <script src="assets/js/jquery-1.12.4.min.js"></script>
+  <!-- -------- venobox js ------ -->
+  <script type="text/javascript" src="assets/js/venobox.min.js"></script>
+  <!-- ---------- wow js ---------- -->
+  <script src="assets/js/wow.min.js"></script>
+  <!-- ---------- tiny slider js --------- -->
+  <script src="assets/js/tiny-slider.js"></script>
+  <!-- ---------- scrollit js ---------- -->
+  <script src="assets/js/scrollIt.min.js"></script>
+  <!-- -------- font awsome js --------- -->
+  <script src="assets/js/all.js"></script>
+  <!-- ---- Bootstrap Js ---- -->
+  <script src="assets/js/bootstrap.min.js"></script>
+  <!-- ---- main js --- -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
