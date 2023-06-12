@@ -46,13 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                      <a class="nav-link active" data-scroll-nav="0" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-scroll-nav="1" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-scroll-nav="2" href="#">About</a>
+                      <a class="nav-link" data-scroll-nav="0" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown ">
                       <a
@@ -82,9 +76,9 @@
                         Sign Up
                       </a>
                       <ul class="dropdown-menu f">
-                        <li><a class="dropdown-item" href="login_user">User</a></li>
+                        <li><a class="dropdown-item" href="signup_user">User</a></li>
                         <li>
-                          <a class="dropdown-item" href="login_hospital">Hospital</a>
+                          <a class="dropdown-item" href="signup_hospital">Hospital</a>
                         </li>
                       </ul>
                     </li>
@@ -105,7 +99,7 @@
           <div class="shape shape-4"></div>
           <div class="shape shape-5"></div>
           <div class="shape shape-6"></div>
-          <div class="container">
+          <div>
             <div class="row align-items-center justify-content-center justify-content-lg-between">
               <div class="col-lg-6 col-md-10">
                 <div class="header-hero-content">
@@ -114,20 +108,24 @@
                             <div class="card-body">
                                 <div class="circle"></div>
                                 <header class="myHed text-center">
-                                   
-                                    <p>LOGIN USER</p>
+                                  <h3>Login User</h3>
                                 </header>
-                                <form class="main-form text-center">
+                                <% if(message.length>0) {%>
+                                  <div class="alert alert-danger">
+                                    <%=message%>
+                                  </div>
+                                  <%}%>
+                                <form class="main-form text-center"action="/login_user" method="post">
                                     <div class="form-group my-0">
                                         <label class="my-0">
                                             <i class="fas fa-user"></i>
-                                            <input type="text" class="myInput" placeholder="Username"> 
+                                            <input type="text" class="myInput" name="email" placeholder="Email"> 
                                         </label>
                                     </div>
                                     <div class="form-group my-0">
                                         <label class="my-0">
                                             <i class="fas fa-lock"></i>
-                                            <input type="password" class="myInput" placeholder="Password"> 
+                                            <input type="password" class="myInput" name="password" placeholder="Password"> 
                                         </label>
                                     </div>
                                     <label class="check_1">
@@ -148,8 +146,7 @@
               </div>
               <div class="col-lg-6 col-md-6" style="padding-left: -40vh;">
                 <div class="header-image" >
-                  <img src="assets/img/download/13.png"  alt="" style="max-height: 80vh;margin-left: 18vh;padding-bottom: 5vh;" class="image-1  wow fadeInRightBig"
-                    data-wow-duration="3s" data-wow-delay="0.5s">
+                  <img src="assets/img/header/header-app.png"  alt="" style="max-height: 80vh;margin-left: 18vh;padding-bottom: 5vh;" >
                 </div>
               </div>
             </div>
