@@ -77,6 +77,10 @@ const detail=async(req,res,next)=>{
     next()
 }
 
+const value=async(req,res,next)=>{
+    next()
+}
+
 //----------------------------------Authorization---------------------------------------------
 
 
@@ -92,9 +96,9 @@ const isAuth=(req,res,next)=>{
 
 //----------------------------------Searching Algorithm----------------------------------------
 
-
 app.get("/searching",isAuth,async(req,res)=>{
     const array=[]
+    const val=req.session.value
     if(req.session.detail){
     const details=req.session.detail
     const user= await userinfo.find({_id:req.session.loginuid})
@@ -123,7 +127,7 @@ app.get("/searching",isAuth,async(req,res)=>{
     }
   console.log(array)
 }
-    res.render("searching",{message:req.flash('msg'),array})
+    res.render("searching",{message:req.flash('msg'),array,val})
 })
 
 app.post("/searching",async(req,res)=>{
@@ -167,8 +171,9 @@ app.post("/searching",async(req,res)=>{
                         })
                     }
                 }
-                req.flash('msg','Searching Successfull')
+                req.flash('msg','Searching Successful')
                     req.session.detail=a
+                    req.session.value=val
                     res.redirect("searching")                   
               
             }

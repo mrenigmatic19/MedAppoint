@@ -8,6 +8,7 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   var latitudeDifference = deg2rad(lat2 - lat1); // deg2rad below
 
   var longitudeDifference = deg2rad(lon2 - lon1);
+  console.log(latitudeDifference, longitudeDifference);
   var a = Math.sin(latitudeDifference / 2) * Math.sin(latitudeDifference / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(longitudeDifference / 2) * Math.sin(longitudeDifference / 2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var distance = radius * c;
@@ -24,6 +25,7 @@ var calculate = function calculate(pincode1, pincode2, data) {
   var latitude2 = data[pincode2].latitude;
   var longitude2 = data[pincode2].longitude;
   var distance = getDistanceFromLatLonInKm(latitude1, longitude1, latitude2, longitude2);
+  console.log(pincode1, pincode2, data);
   return distance;
 };
 
@@ -34,6 +36,7 @@ var getDistance = function getDistance(pincode1, pincode2) {
         case 0:
           _context.next = 2;
           return regeneratorRuntime.awrap(axios.get('./pincode.json').then(function (response) {
+            console.log(pincode1, pincode2, "1");
             var result = calculate(pincode1, pincode2, response.data);
             return result;
           })["catch"](function (error) {
@@ -41,9 +44,6 @@ var getDistance = function getDistance(pincode1, pincode2) {
           }));
 
         case 2:
-          return _context.abrupt("return", _context.sent);
-
-        case 3:
         case "end":
           return _context.stop();
       }
@@ -51,6 +51,7 @@ var getDistance = function getDistance(pincode1, pincode2) {
   });
 };
 
+console.log(getDistance('382445', '110021'));
 module.exports = {
   getDistance: getDistance
 };

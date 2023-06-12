@@ -12,7 +12,7 @@ const appointmentsschema = new mongoose.Schema({
         required:true,
         unique:false
     },
-    specialist: {
+    disease: {
         type: String,
         required:true,
         unique:false
