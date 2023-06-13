@@ -277,20 +277,6 @@ app.post("/login_user",async (req,res)=>{
 
 //--------------------------------About-Contact-explore---------------------------------------
 
-
-app.get("/about",async (req,res)=>{
-    res.render("about")
-})
-app.get("/contactUs",async (req,res)=>{
-    res.render("contactUs",{message:req.flash('msg')})
-})
-app.get("/explore",async (req,res)=>{
-    res.render("explore")
-})
-app.get("/hospital",async (req,res)=>{
-    res.render("hospital")
-})
-
 //-----------------------------------Hospital Home--------------------------------------------
 
 
