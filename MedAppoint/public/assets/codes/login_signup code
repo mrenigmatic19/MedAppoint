@@ -1,0 +1,399 @@
+<!--LOGIN PAGE START-->
+
+<!--
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login Form Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="circle"></div>
+                <header class="myHed text-center">
+                    <i class="far fa-user"></i>
+                    <p>LOGIN</p>
+                </header>
+                <form class="main-form text-center">
+                    <div class="form-group my-0">
+                        <label class="my-0">
+                            <i class="fas fa-user"></i>
+                            <input type="text" class="myInput" placeholder="Username"> 
+                        </label>
+                    </div>
+                    <div class="form-group my-0">
+                        <label class="my-0">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" class="myInput" placeholder="Password"> 
+                        </label>
+                    </div>
+                    <label class="check_1">
+                        <input type="checkbox" checked>
+                        Remember Me
+                    </label>
+                    <div class="form-group">
+                        <label> 
+                            <input type="button" class="form-control button" value="LOGIN"> 
+                        </label>
+                    </div>
+                    <span class="check_1">Forget Password</span>
+                </form>
+            </div>
+        </div>
+    </div>
+     
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+    CSS FILES
+
+   
+   
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    background:#fff;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    max-width:400px;
+    border-radius: 20px;
+} 
+.card{
+    border-radius: 20px;
+    height:600px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    border:none;
+    overflow: hidden;
+    box-shadow: 0 5px 8px #414141;
+    z-index:0;
+    box-sizing: border-box;
+}
+.circle{
+    position:absolute;
+    bottom:-230px;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#fff;
+    clip-path:circle(50%);
+    height:700px;
+    width:700px;
+    z-index:-1;
+    overflow:hidden;
+}
+.myHed{
+    margin-top:30px;
+    font-size: 32px;
+    margin-bottom:10px;
+    font-weight:700;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.far{
+    font-size:40px;
+}
+.fas{
+    position:relative;
+    display:block;
+    left:-87px;
+    top:30px;
+    color:rgb(255,255,255);
+}
+.button{
+    width:250px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color:#fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+.myInput{
+    width:220px;
+    padding:10px;
+    padding-left:40px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color:#fff;
+    border:none;
+    display: block;
+}
+.myInput::placeholder{
+    color:#fff;
+    opacity: 0.6;
+}
+.myInput:focus{
+    border:none;
+    outline:none;
+}
+.check_1{
+    font-weight: 500;
+    color:rgb(85,85,85);
+    font-size: 12px;
+    margin:15px auto;
+    cursor: pointer;
+}
+
+@media (max-width: 768px){
+    .container{
+        max-width: 100%;
+    }
+}
+-->
+<!--LOGIN PAGE ENDS-->
+
+
+<!--SIGNUP PAGE START-->
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Form Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="circle"></div>
+                <header class="myHed text-center">
+                    <i class="far fa-user"></i>
+                    <p>SIGN UP</p>
+                </header>
+                <form class="main-form text-center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" class="myInput" placeholder="Username"> 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <input type="tel" class="myInput" placeholder="Mobile Number"> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" class="myInput" placeholder="Email Id"> 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-key"></i>
+                                    <input type="password" class="myInput" placeholder="PIN"> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-address-card"></i>
+                                    <input type="text" class="myInput" placeholder="Address"> 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-venus-mars"></i>
+                                    <select class="myInput">
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <input type="text" class="myInput" placeholder="DOB"> 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" class="myInput" placeholder="Password"> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" class="myInput" placeholder="Confirm Password"> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label> 
+                            <input type="button" class="form-control button" value="SIGN UP"> 
+                        </label>
+                    </div>
+                    <span class="check_1">Already have an account? <a href="#">Login</a></span>
+                </form>
+            </div>
+        </div>
+    </div>
+     
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+CSS FILES 
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    background:#fff;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    max-width:600px;
+    border-radius: 20px;
+} 
+.card{
+    border-radius: 20px;
+    height:800px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    border:none;
+    overflow: hidden;
+    box-shadow: 0 5px 8px #414141;
+    z-index:0;
+    box-sizing: border-box;
+}
+.circle{
+    position:absolute;
+    bottom:-230px;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#fff;
+    clip-path:circle(50%);
+    height:700px;
+    width:700px;
+    z-index:-1;
+    overflow:hidden;
+}
+.myHed{
+    margin-top:30px;
+    font-size: 32px;
+    margin-bottom:10px;
+    font-weight:700;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.far{
+    font-size:40px;
+}
+.fas{
+    position:relative;
+    display:block;
+    left:-87px;
+    top:30px;
+    color:rgb(255,255,255);
+}
+.button{
+    width:250px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color:#fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+.myInput{
+    width:220px;
+    padding:10px;
+    padding-left:40px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color:#fff;
+    border:none;
+    display: block;
+}
+.myInput::placeholder{
+    color:#fff;
+    opacity: 0.6;
+}
+.myInput:focus{
+    border:none;
+    outline:none;
+}
+.check_1{
+    font-weight: 500;
+    color:rgb(85,85,85);
+    font-size: 12px;
+    margin:15px auto;
+    cursor: pointer;
+}
+
+@media (max-width: 768px){
+    .container{
+        max-width: 100%;
+    }
+}
+
+  
+-->
+<!--SIGNUP PAGE ENDS-->
