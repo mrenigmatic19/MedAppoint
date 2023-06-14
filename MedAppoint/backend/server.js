@@ -427,12 +427,12 @@ app.post("/icubeds",async(req,res)=>{
 
 app.get("/appointments",isAuth,async(req,res)=>{
     appointmentinfo.find({hospitalid:req.session.loginhid}).then((data)=>{
+        console.log(data)
             res.render("appointments",{message:req.flash('msg'),data:data})
         }).catch((y)=>{
     console.log(y)
         })
 })
-
 
 app.post("/appointments", async(req,res)=>{
     const newappointmentreg=new appointmentinfo({
@@ -441,7 +441,7 @@ app.post("/appointments", async(req,res)=>{
         specialist:req.body.specialist,
         cost:req.body.cost,
         yoe:req.body.yoe,
-        bookingslot:req.body.bookingslot
+        bookingslot:req.body.bookingslot 
     })
     await appointmentinfo.insertMany([newappointmentreg])
     req.flash('msg','Successfully Registered')

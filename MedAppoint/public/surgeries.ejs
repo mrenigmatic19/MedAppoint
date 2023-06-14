@@ -123,7 +123,12 @@
                            
                           <h3>Surgeries</h3>
                         </header>
-                        <form class="main-form text-center">
+                        <% if(message.length>0) {%>
+                          <div class="alert alert-success">
+                            <%=message%>
+                          </div>
+                          <%}%>
+                        <form class="main-form text-center" action="/surgeries" method="post">
                             <div class="form-group my-0">
                                 <label class="my-0">
                                     <i class="fas fa-user"></i>
@@ -151,7 +156,7 @@
                         
                             <div class="form-group" style="margin-top: 20px;margin-bottom: 30px;">
                                 <label> 
-                                    <input type="button" class="form-control button" value="SUBMIT"> 
+                                    <input type="submit" class="form-control button" value="SUBMIT"> 
                                 </label>
                             </div>
                            
@@ -170,7 +175,53 @@
     <!---- home star ------>
   </header>
   <!--------   Header End ----  -->
-  
+  <section class="feature-section pt-80" data-scroll-index="1">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-7">
+          <div class="section-title text-center mb-30">
+            <h1 class="mb-25  wow fadeInUp" data-wow-delay=".2s">Registered <span>Details</span></h1>
+          
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center" style="height:70vh">
+        <div class="col-lg-8">
+          <% if(data.length>0){%>
+            <div class="container">
+              <table class="table table-border">
+                <tr>
+            
+                  <td>Surgeon Name</td>
+                  <td>Specialisation</td>
+                  <td>Year of Experience</td>
+                  <td>Price</td>
+                
+                  <td>Modify</td>
+                </tr>
+                <% data.forEach((x)=>{ %>
+                  <tr>
+                    
+                    <td><%=x.doctor%></td>
+                    <td><%=x.specialist%></td>
+                    <td><%=x.yoe%></td>
+                    <td><%=x.cost%></td>
+                    <td>
+                      <form>
+                        <button>Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+          
+          
+              </table>
+            </div>
+            <%}%>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 

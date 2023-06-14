@@ -111,7 +111,12 @@
                                 <header class="myHed text-center">
                                     <h3>Sign Up User</h3>
                                 </header>
-                                <form class="main-form text-center">
+                                <% if(message.length>0) {%>
+                                  <div class="alert alert-danger">
+                                    <%=message%>
+                                  </div>
+                                  <%}%>
+                                <form class="main-form text-center" action="/signup_user" method="post">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">

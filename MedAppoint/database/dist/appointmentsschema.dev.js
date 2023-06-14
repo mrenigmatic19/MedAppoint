@@ -15,7 +15,7 @@ var appointmentsschema = new mongoose.Schema({
     required: true,
     unique: false
   },
-  disease: {
+  specialist: {
     type: String,
     required: true,
     unique: false

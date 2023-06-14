@@ -914,6 +914,7 @@ app.get("/appointments", isAuth, function _callee19(req, res) {
           appointmentinfo.find({
             hospitalid: req.session.loginhid
           }).then(function (data) {
+            console.log(data);
             res.render("appointments", {
               message: req.flash('msg'),
               data: data
