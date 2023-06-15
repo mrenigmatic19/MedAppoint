@@ -62,10 +62,14 @@
             </button>
             <li class="input-group rounded"  >
             
-              <input type="search" class="form-control rounded" placeholder="Search" name="search" aria-label="Search" aria-describedby="search-addon" />
-             
-               <input type="submit" class="btn btn-primary" style="margin:2px" value="submit">   
-                  
+              <form action="/searching" method="post" style="width:100vh;margin:auto">
+                <div class="input-group rounded"  >
+                  <input type="search" class="form-control rounded" placeholder="Search" name="search" aria-label="Search" aria-describedby="search-addon" />
+                 
+                    <input type="submit" class="btn btn-primary" style="margin:2px" value="submit">
+                
+                </div>
+              </form>
             </li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
@@ -96,7 +100,7 @@
                   <i class="fa fa-envelope-open-o" ></i>
                   </a>
                   <ul class="dropdown-menu f">
-                    <li><a class="dropdown-item" >Logout</a></li>
+                    <li> <form action="/logout" method="post"><input type="submit" class="dropdown-item" value="Logout"></form>
                     <li>
                       <a class="dropdown-item" href="#">Setting</a>
                     </li>

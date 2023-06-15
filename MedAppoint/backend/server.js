@@ -135,6 +135,7 @@ app.post("/searching",async(req,res)=>{
             const val=req.body.value
             if(val){
                 const string=req.body.search
+                console.log(string)
                 if(string){
                 const array=string.split(' ')
                 let a=[]
@@ -158,7 +159,7 @@ app.post("/searching",async(req,res)=>{
                             a.push(x)
                         })
                     }
-                    else if(val==3){
+                    else if(val==2){
                         const table=await bedinfo.find({disease:array[i]})
                         table.forEach((x)=>{
                             a.push(x)

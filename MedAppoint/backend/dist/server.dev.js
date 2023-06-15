@@ -228,18 +228,19 @@ app.post("/searching", function _callee3(req, res) {
           val = req.body.value;
 
           if (!val) {
-            _context7.next = 13;
+            _context7.next = 14;
             break;
           }
 
           string = req.body.search;
+          console.log(string);
 
           if (!string) {
-            _context7.next = 9;
+            _context7.next = 10;
             break;
           }
 
-          _context7.next = 7;
+          _context7.next = 8;
           return regeneratorRuntime.awrap(function _callee2() {
             var array, a, i, table, _table, _table2, _table3, _table4;
 
@@ -320,7 +321,7 @@ app.post("/searching", function _callee3(req, res) {
                     break;
 
                   case 25:
-                    if (!(val == 3)) {
+                    if (!(val == 2)) {
                       _context6.next = 32;
                       break;
                     }
@@ -372,38 +373,38 @@ app.post("/searching", function _callee3(req, res) {
             });
           }());
 
-        case 7:
-          _context7.next = 11;
+        case 8:
+          _context7.next = 12;
           break;
 
-        case 9:
+        case 10:
           req.flash('msg', 'Empty Search');
           res.redirect("searching");
 
-        case 11:
-          _context7.next = 15;
+        case 12:
+          _context7.next = 16;
           break;
 
-        case 13:
+        case 14:
           req.flash('msg', 'Select respective field');
           res.redirect("searching");
 
-        case 15:
-          _context7.next = 21;
+        case 16:
+          _context7.next = 22;
           break;
 
-        case 17:
-          _context7.prev = 17;
+        case 18:
+          _context7.prev = 18;
           _context7.t0 = _context7["catch"](0);
           req.flash('msg', 'Search Something');
           res.redirect("searching");
 
-        case 21:
+        case 22:
         case "end":
           return _context7.stop();
       }
     }
-  }, null, null, [[0, 17]]);
+  }, null, null, [[0, 18]]);
 }); //--------------------------------------Index--------------------------------------------------
 
 app.get("/", function _callee4(req, res) {
