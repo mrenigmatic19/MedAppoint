@@ -65,10 +65,18 @@
               <form action="/searching" method="post" style="width:80vh;margin:auto">
                 <div class="input-group rounded"  >
                   <input type="search" class="form-control rounded" placeholder="Search" name="search" aria-label="Search" aria-describedby="search-addon" />
-                 
-                    <input type="submit" class="btn btn-primary" style="margin:2px" value="submit">
-                
+                  <select name="value" class="myInput" style="width: auto;max-width: 20px;opacity: 1;;margin-left:2px">
+                    <option style="color: black;" value="0">ICU</option>
+                    <option style="color: black;" value="1">Apparatus</option>
+                    <option style="color: black;" value="2">Regular Checkups</option>
+                    <option style="color: black;" value="3">Surgery</option>
+                    <option style="color: black;" value="4">Appointment</option>
+                </select>
+                <input type="submit" class="btn btn-primary" style="margin:2px;height: 40px;" value="submit">
+                      
                 </div>
+                
+               
               </form>
             </li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">

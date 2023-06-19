@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="assets/css/default.css">
   <!-- --- style css -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/search.css">
 </head>
 
 <body>
@@ -61,23 +62,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" data-scroll-nav="0" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-scroll-nav="1" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-scroll-nav="2" href="#">About</a>
-                </li>
-                
-                <li class="nav-item">
-                  <a class="nav-link" data-scroll-nav="4" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-scroll-nav="5" href="#">FAQ</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-scroll-nav="6" href="#">Download</a>
+                  <a class="nav-link"  href="home">Home</a>
                 </li>
                 <li class="nav-item dropdown ">
                   <a
@@ -87,33 +72,15 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="true"
                   >
-                    Login
+                  <i class="fa fa-envelope-open-o" ></i>
                   </a>
                   <ul class="dropdown-menu f">
-                    <li><a class="dropdown-item" href="login_user">User</a></li>
+                    <li> <form action="/logout" method="post"><input type="submit" class="dropdown-item" value="Logout"></form>
                     <li>
-                      <a class="dropdown-item" href="login_hospital">Hospital</a>
+                      <a class="dropdown-item" href="#">Setting</a>
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item dropdown ">
-                  <a
-                    class="nav-link dropdown-toggle f"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="true"
-                  >
-                    Sign Up
-                  </a>
-                  <ul class="dropdown-menu f">
-                    <li><a class="dropdown-item" href="login_user">User</a></li>
-                    <li>
-                      <a class="dropdown-item" href="login_hospital">Hospital</a>
-                    </li>
-                  </ul>
-                </li>
-
               </ul>
 
             </div>
@@ -121,8 +88,9 @@
         </nav>
       </div>
     </div>
+  </header>
     <!---- navbar end--->
-    <div class="header-hero" data-scroll-index="0">
+    <section>    <div class="header-hero" data-scroll-index="0">
       <!---- home star ------>
       <div class="shape shape-1"></div>
       <div class="shape shape-2"></div>
@@ -130,325 +98,220 @@
       <div class="shape shape-4"></div>
       <div class="shape shape-5"></div>
       <div class="shape shape-6"></div>
-      <div class="container bb">
-    
+      <div class="container bb" style="margin-top: 100px;">
+        
+        <div class="container">
+          <div class="header-shape-1"></div>
+          <div class="header-shape-2">
+            <img src="assets/img/header/header-shape-2.svg" alt="">
+          </div>
+        </div>
         <form action="/searching" method="post">
          
          
-            <div class="col-lg-10" style="margin:auto">
-                <div class="dropdown searchh" style="margin-top: 40px;">
-                    <table style="width:80vh;margin:auto;background-color: white;border-radius:30px;height: 40px ;">
-                      <tr>
-                        <td><input class="btn btn-primary"  value="0" type="radio" name="value">ICU</td>
-                        <td><input class="btn btn-primary" value="1" type="radio" name="value">Apparatus</td>
-                        <td> <input class="btn btn-primary" value="2" type="radio" name="value">Regular Checkups</td>
-                        <td><input class="btn btn-primary" value="3" type="radio" name="value">Surgery</td>
-                        <td><input class="btn btn-primary" value="4" type="radio" name="value">Appointment</td>
-                      </tr>
-                    </table>
-                   
-                  </div>
+          
+               
+                    
+                   <div class="container" style="width:auto;max-width:170vh;margin:auto">
+                 
                   <div>
-                    <% if(message.length>0) {%>
-                      <div class="alert alert-danger" style="margin-top: 10px;">
+                    <% if(message.length>0&&message!="Searching Successful") {%>
+                      <div class="alert alert-danger" style="max-width: 150vh;width: auto;margin: auto;margin-top: 10px;margin-bottom: 20px;">
                         <%=message%>
                         <%}%>
+                        <% if(message.length>0&&message=="Searching Successful") {%>
+                          <div class="alert alert-success" style="max-width: 150vh;width: auto;margin: auto;margin-top: 10px;margin-bottom: 20px;">
+                            <%=message%>
+                            <%}%>
                   </div>
-          <div class="input-group rounded" style="margin-top: 10px;" >
-           
-            <input type="search" class="form-control rounded" placeholder="Search" name="search" aria-label="Search" aria-describedby="search-addon" />
-           
-             <input type="submit" class="btn btn-primary" style="margin:2px" value="submit">                
-          </div>
-          
-        </form>
+                  <form action="/searching" method="post" >
+                    <div class="input-group rounded" style="width: auto;max-width:148vh;margin: auto;" style="margin:auto" >
+                      <input type="search" class="form-control rounded" placeholder="Search" name="search" aria-label="Search" aria-describedby="search-addon" />
+                      <select name="value" class="myInput" style="width: auto;max-width: 80px;opacity: 1;;margin-left:2px">
+                        <option style="color: black;" value="0">ICU</option>
+                        <option style="color: black;" value="1">Apparatus</option>
+                        <option style="color: black;" value="2">Regular Checkups</option>
+                        <option style="color: black;" value="3">Surgery</option>
+                        <option style="color: black;" value="4">Appointment</option>
+                    </select>
+                    <input type="submit" class="btn btn-primary" style="margin:2px;height: 40px;" value="submit">
+                          
+                    </div>
+                    
+                   
+                  </form>
 
-      <div class="container">
-        <div class="header-shape-1"></div>
-        <div class="header-shape-2">
-          <img src="assets/img/header/header-shape-2.svg" alt="">
-        </div>
-      </div>
-      </div>
-    </div>
-    <!---- home star ------>
-  </header>
-  <section>
+     
+ 
+
+<div class="wrapper" style="margin: auto;margin-top: 50px;margin-bottom: 100px;">
+     
+  <ul class="carousel" style="margin: auto;">
     <%try{if(val){%>
-    <%if(val==0){%>
-      <%array.forEach((x)=>{%>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h2 class="card-title">x[1].hospitalname</h2>
-            <h5 class="card-title">x[0].</h5>
-            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vitae vel officia
-              veritatis?</p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Government
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Privete
-              </label>
-            </div>
-            <br>
-            Price :
-            <input type="text" class="form-control w" id="address2 " placeholder="price">
+      <%if(val==0){%>
+        <%array.forEach((x)=>{%>
+          <li class="card" >
+          <div class="container">
+            <div class="row g-0">
+          <div class="col-md-6">
+            <img src="assets/img/hospital-animation.png"  class="img" alt="...">
           </div>
-        </div>
-      <%})%>
-    <%}%>
-    <%if(val==1){%>
-      <%array.forEach((x)=>{%>
-        <div class="container">
+          <div class="col-md-4" style="align-content: end;">
+            <div class="card-body">
+              <h2 class="card-title"><%=x[1].hospitalname%></h2>
+              <h5 class="card-title">Beds Available<%=x[0].beds%></h5>
+              <h5 class="card-title"></h5>
+              <p class="card-text">We Provide Best seervices</p>
+              <h5>Sector :- <%=x[1].org%></h5>
+              <br>
+              <h5>Price :- <%=x[0].cost%> </h5>
+             
+            </div>
+          </div>
+            </div>
+          </div>
+          </li>
+        <%})%>
+      <%}%>
+      <%if(val==1){%>
+        <%array.forEach((x)=>{%>
+          <li class="card" >
+          <div class="container">
+            <div class="row g-0">
+          <div class="col-md-6">
+            <img src="assets/img/hospital-animation.png" class="img" alt="...">
+          </div>
+          <div class="col-md-4" style="align-content: end;">
+            <div class="card-body">
+              <h2 class="card-title"><%=x[1].hospitalname%></h2>
+              <h5 class="card-title"><%=x[0].type%><%=x[0].instrumentname%></h5>
+              <h5 class="card-title"></h5>
+              <p class="card-text">We Provide Best seervices</p>
+              <h5>Sector :- <%=x[1].org%></h5>
+              <br>
+              <h5>Availability :- <%=x[0].availability%> </h5>
+             
+            </div>
+          </div>
+            </div>
+          </div>
+        </li>
+        <%})%>
+      <%}%>
+      <%if(val==2){%>
+        
+          <%array.forEach((x)=>{%>
+            <li class="card">
+            <div class="container">
+              <div class="row g-0">
+            <div class="col-md-6">
+              <img src="assets/img/hospital-animation.png" class="img" alt="...">
+            </div>
+            <div class="col-md-4" style="align-content: end;">
+              <div class="card-body">
+                <h2 class="card-title"><%=x[1].hospitalname%></h2>
+                <h5 class="card-title">Disease <%=x[0].disease%></h5>
+                <h5 class="card-title">General Ward :- <%=x[0].publicward %></h5>
+                <h5 class="card-title">Private Ward :- <%=x[0].privateward %></h5>
+                <p class="card-text">We Provide Best seervices</p>
+                <h5>Sector :- <%=x[1].org%></h5>
+                <br>
+                <h5>Price :- <%=x[0].cost%> </h5>
+               
+              </div>
+            </div>
+              </div>
+            </div>
+          </li>
+        <%})%>
+      <%}%>
+      <%if(val==3){%>
+        <%array.forEach((x)=>{%>
+          <li class="card">
+          <div class="container">
+            <div class="row g-0">
+          <div class="col-md-6">
+            <img src="assets/img/hospital-animation.png" class="img" alt="...">
+          </div>
+          <div class="col-md-4" style="align-content: end;">
+            <div class="card-body">
+              <h2 class="card-title"><%=x[1].hospitalname%></h2>
+              <h5 class="card-title">specialist of <%=x[0].specialist%></h5>
+              <h5 class="card-title">Surgeon Name :- <%=x[0].doctor %></h5>
+              <h5 class="card-title">Year of Experiance :- <%=x[0].yoe%></h5>
+              <p class="card-text">We Provide Best seervices</p>
+              <h5>Sector :- <%=x[1].org%></h5>
+             
+              <br>
+              <h5>Price :- <%=x[0].cost%> </h5>
+             
+            </div>
+          </div>
+            </div>
+          </div>
+        </li>
+        <%})%>
+      <%}%>
+      <%if(val==4){%>
+        <%array.forEach((x)=>{%>
+          <li class="card"><div class="container">
+            <div class="row g-0">
+          <div class="col-md-6">
+            <img src="assets/img/hospital-animation.png" class="img" alt="...">
+          </div>
+          <div class="col-md-4" style="align-content: end;">
+            <div class="card-body">
+              <h2 class="card-title"><%=x[1].hospitalname%></h2>
+              <h5 class="card-title">Specialist of <%=x[0].specialist%></h5>
+              <h5 class="card-title">Surgeon Name :- <%=x[0].doctor%></h5>
+              <h5 class="card-title">Year of Experiance :- <%=x[0].yoe%></h5>
+              <p class="card-text">We Provide Best seervices</p>
+            
+              <h5>Sector :- <%=x[1].org%></h5>
+            
+           
+              <br>
+              <h5>Price :- <%=x[0].cost%> </h5>
+             
+            </div>
+          </div>
+            </div>
+          </div>
+        </li>
+        <%})%>
+      <%}}}catch{%>
+        <li class="card"><div class="container">
           <div class="row g-0">
         <div class="col-md-6">
-          <img src="assets/img/hospital-animation.png" style="height: 200px;width: auto;margin:auto" class="img-fluid rounded-start" alt="...">
+          <img src="assets/img/hospital-animation.png" class="img" alt="...">
         </div>
         <div class="col-md-4" style="align-content: end;">
           <div class="card-body">
-            <h2 class="card-title"><%=x[1].hospitalname%></h2>
-            <h5 class="card-title"><%=x[0].type%><%=x[0].instrumentname%></h5>
-            <h5 class="card-title"></h5>
+            <h2 class="card-title">Not found Any Hospital</h2>
+        
             <p class="card-text">We Provide Best seervices</p>
             <div class="form-check">
               <input class="form-check-input" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
-                Sector :- <%=x[1].org%>
+                Sector :- Public
               </label>
            
             </div>
             <br>
-            Availability :- <%=x[0].availability%> 
+            Price :- -/-
            
           </div>
         </div>
           </div>
-        </div>
-      <%})%>
-    <%}%>
-    <%if(val==2){%>
-      <%array.forEach((x)=>{%>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h2 class="card-title"><%=x[1].hospitalname%>2</h2>
-            <h5 class="card-title">x[0].</h5>
-            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vitae vel officia
-              veritatis?</p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Government
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Privete
-              </label>
-            </div>
-            <br>
-            Price :
-            <input type="text" class="form-control w" id="address2 " placeholder="price">
-          </div>
-        </div>
-      <%})%>
-    <%}%>
-    <%if(val==3){%>
-      <%array.forEach((x)=>{%>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h2 class="card-title">x[1].hospitalname</h2>
-            <h5 class="card-title">x[0].</h5>
-            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vitae vel officia
-              veritatis?</p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Government
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Privete
-              </label>
-            </div>
-            <br>
-            Price :
-            <input type="text" class="form-control w" id="address2 " placeholder="price">
-          </div>
-        </div>  
-      <%})%>
-    <%}%>
-    <%if(val==4){%>
-      <%array.forEach((x)=>{%>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h2 class="card-title">x[1].hospitalname</h2>
-            <h5 class="card-title">x[0].</h5>
-            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vitae vel officia
-              veritatis?</p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Government
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Privete
-              </label>
-            </div>
-            <br>
-            Price :
-            <input type="text" class="form-control w" id="address2 " placeholder="price">
-          </div>
-        </div>  
-      <%})%>
-    <%}}}catch{%>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h2 class="card-title">x[1].hospitalname</h2>
-          <h5 class="card-title">x[0].</h5>
-          <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vitae vel officia
-            veritatis?</p>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Government
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Privete
-            </label>
-          </div>
-          <br>
-          Price :
-          <input type="text" class="form-control w" id="address2 " placeholder="price">
-        </div>
-      </div>  
-    <%}%>
-  </section>
-  <footer class="footer-area">
-    <div class="footer-shape shape-1"></div>
-    <div class="footer-shape shape-2"></div>
-    <div class="footer-shape shape-3"></div>
-    <div class="footer-shape shape-4"></div>
-    <div class="footer-shape shape-5"></div>
-    <div class="footer-shape shape-6"></div>
-    <div class="footer-widget pt-30 pb-80">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="footer-about mt-50">
-              <a href="" class="logo">
-                <img src="assets/img/header/logo/landapp-logo.png" alt="">
-              </a>
-              <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quaerat quo obcaecati
-                excepturi, iste nisi.</p>
-              <ul class="social">
-                <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-6">
-            <div class="footer-link d-flex flex-wrap">
-              <div class="footer-link-wrapper mt-45">
-                <div class="footer-title">
-                  <h4 class="title">Quick Links</h4>
-                </div>
-                <ul class="link">
-                  <li><a href="">Home</a></li>
-                  <li><a href="">Features</a></li>
-                  <li><a href="">About</a></li>
-                  <li><a href="">Testimonial</a></li>
-                  <li><a href="">Pricing</a></li>
-                  <li><a href="">Download</a></li>
-                </ul>
-              </div>
-              <div class="footer-link-wrapper mt-45">
-                <div class="footer-title">
-                  <h4 class="title">Support</h4>
-                </div>
-                <ul class="link">
-                  <li><a href="">FAQ</a></li>
-                  <li><a href="">Privacy Policy</a></li>
-                  <li><a href="">Terms OF Use</a></li>
-                  <li><a href="">Legal</a></li>
-                  <li><a href="">Site Map</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-contact mt-45">
-              <div class="footer-title">
-                <h4 class="title">Quick Links</h4>
-              </div>
-              <ul class="contact-list">
-                <li>
-                  <div class="contact-info">
-                    <div class="info-content media-body">
-                      <p class="text"><i class="fas fa-phone-alt"></i>
-                        +809272561823 </p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="contact-info">
-                    <div class="info-content media-body">
-                      <p class="text"><a href=""><i class="far fa-envelope"></i>
-                          landapp@gmail.com </a></p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="contact-info">
-                    <div class="info-content media-body">
-                      <p class="text"><a href=""><i class="fas fa-globe"></i>
-                          www.landapp.com </a></p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="contact-info">
-                    <div class="info-content media-body">
-                      <p class="text"><i class="fas fa-map-marker-alt"></i>
-                        123 stree now york city, united states of america 750 </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="lo-lg-12">
-            <div class="copyright">
-              <div class="copyright-text text-center">
-                <p class="text">Copyright &#169; 2020 <a href="">landapp</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+        </div></li>
+      <%}%>
+  </ul>
+</div>
+
+</div>
+    <!---- home star ------>
+ 
+  </div></section>
   <!-- --------------Footer Section End ------- -->
 
 

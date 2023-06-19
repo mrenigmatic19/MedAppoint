@@ -23,6 +23,12 @@ const bedschema = new mongoose.Schema({
         unique:false
        
     },
+
+    cost: {
+        type: Number,
+        required:true,
+        unique:false
+    },
     wards: {
         type: Number,
         required:true,

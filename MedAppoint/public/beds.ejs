@@ -69,23 +69,23 @@
                      
                     </ul>
                   </li>
-                <li class="nav-item dropdown ">
-                  <a
-                    class="nav-link dropdown-toggle f"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="true"
-                  >
-                  <i class="fa fa-envelope-open-o" ></i>
-                  </a>
-                  <ul class="dropdown-menu f">
-                    <li><a class="dropdown-item" href="login_user">Logout</a></li>
-                    <li>
-                      <a class="dropdown-item" href="login_hospital">Setting</a>
-                    </li>
-                  </ul>
-                </li>
+                  <li class="nav-item dropdown ">
+                    <a
+                      class="nav-link dropdown-toggle f"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="true"
+                    >
+                    <i class="fa fa-envelope-open-o" ></i>
+                    </a>
+                    <ul class="dropdown-menu f">
+                      <li> <form action="/logout" method="post"><input type="submit" class="dropdown-item" value="Logout"></form>
+                      <li>
+                        <a class="dropdown-item" href="#">Setting</a>
+                      </li>
+                    </ul>
+                  </li>
                 
               </ul>
 
@@ -152,6 +152,12 @@
                                 <input type="text" class="myInput" name="privateward" placeholder="Private-Ward"> 
                             </label>
                         </div>
+                        <div class="form-group my-0">
+                          <label class="my-0">
+                              <i class="fas fa-user"></i>
+                              <input type="text" class="myInput" name="cost" placeholder="Price"> 
+                          </label>
+                      </div>
                         
                             <div class="form-group" style="margin-top: 20px;margin-bottom: 30px">
                                 <label> 
@@ -196,6 +202,7 @@
                   <td>Private Ward</td>
                   <td>Public Ward</td>
                   <td>Total Ward</td>
+                  <td>Price</td>
                   <td>Modify</td>
                 </tr>
                 <% data.forEach((x)=>{ %>
@@ -205,6 +212,7 @@
                     <td><%=x.privateward%></td>
                     <td><%=x.publicward%></td>
                     <td><%=x.wards%></td>
+                    <td><%=x.cost%></td>
                     <td>
                       <form>
                         <button>Delete</button>

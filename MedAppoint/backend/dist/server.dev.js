@@ -994,7 +994,8 @@ app.post("/beds", function _callee22(req, res) {
             publicward: req.body.publicward,
             privateward: req.body.privateward,
             wards: req.body.ward,
-            disease: req.body.disease
+            disease: req.body.disease,
+            cost: req.body.cost
           });
           _context26.next = 3;
           return regeneratorRuntime.awrap(bedinfo.insertMany([newbedreg]));

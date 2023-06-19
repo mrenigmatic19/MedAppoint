@@ -470,6 +470,7 @@ app.post("/beds", async(req,res)=>{
         privateward:req.body.privateward,
         wards:req.body.ward,
         disease:req.body.disease,
+        cost:req.body.cost
     })
     await bedinfo.insertMany([newbedreg])
     req.flash('msg','Successfully Registered')

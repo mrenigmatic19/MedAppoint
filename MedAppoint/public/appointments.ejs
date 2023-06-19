@@ -69,24 +69,23 @@
                      
                     </ul>
                   </li>
-                <li class="nav-item dropdown ">
-                  <a
-                    class="nav-link dropdown-toggle f"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="true"
-                  >
-                  <i class="fa fa-envelope-open-o" ></i>
-                  </a>
-                  <ul class="dropdown-menu f">
-                    <li><a class="dropdown-item" href="login_user">Logout</a></li>
-                    <li>
-                      <a class="dropdown-item" href="login_hospital">Setting</a>
-                    </li>
-                  </ul>
-                </li>
-                
+                  <li class="nav-item dropdown ">
+                    <a
+                      class="nav-link dropdown-toggle f"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="true"
+                    >
+                    <i class="fa fa-envelope-open-o" ></i>
+                    </a>
+                    <ul class="dropdown-menu f">
+                      <li> <form action="/logout" method="post"><input type="submit" class="dropdown-item" value="Logout"></form>
+                      <li>
+                        <a class="dropdown-item" href="#">Setting</a>
+                      </li>
+                    </ul>
+                  </li>
               </ul>
 
             </div>
@@ -94,6 +93,8 @@
         </nav>
       </div>
     </div>
+  </header>
+  <section style="height: fit-content;">
     <!---- navbar end--->
     <div class="header-hero" data-scroll-index="0">
       <!---- home star ------>
@@ -177,58 +178,61 @@
         </div>
       </div>
     </div>
-    <!---- home star ------>
-  </header>
-  <!--------   Header End ----  -->
   
-    <section class="feature-section pt-80" data-scroll-index="1">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xl-6 col-lg-7">
-            <div class="section-title text-center mb-30">
-              <h1 class="mb-25  wow fadeInUp" data-wow-delay=".2s">Registered <span>Details</span></h1>
-             </div>
-          </div>
-        </div>
-        <div class="row justify-content-center" style="height:70vh">
-          <div class="col-lg-8">
-            <% if(data.length>0){%>
-              <div class="container">
-                <table class="table table-border">
-                  <tr>
-              
-                    <td>Doctor Name</td>
-                    <td>Specialisation</td>
-                    <td>Year of Experience</td>
-                    <td>Price</td>
-                    <td>Booking Slots</td>
-                    <td>Modify</td>
-                  </tr>
-                  <% data.forEach((x)=>{ %>
-                    <tr>
-                      
-                      <td><%=x.doctor%></td>
-                      <td><%=x.specialist%></td>
-                      <td><%=x.yoe%></td>
-                      <td><%=x.cost%></td>
-                      <td><%=x.bookingslot%></td>
-                      <td>
-                        <form>
-                          <button>Delete</button>
-                        </form>
-                      </td>
-                    </tr>
-                  <% }) %>
-            
-            
-                </table>
-              </div>
-              <%}%>
-          </div>
+    
+      
+    <!---- home star ------>
+  </section>
+  <!--------   Header End ----  -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-7">
+          <div class="section-title text-center mb-30">
+            <h1 class="mb-25  wow fadeInUp" data-wow-delay=".2s">Registered <span>Details</span></h1>
+           </div>
         </div>
       </div>
-    </section>
-   
+      <div class="row justify-content-center" style="height:70vh">
+        <div class="col-lg-8">
+          <% if(data.length>0){%>
+            <div class="container">
+              <table class="table table-border">
+                <tr>
+            
+                  <td>Doctor Name</td>
+                  <td>Specialisation</td>
+                  <td>Year of Experience</td>
+                  <td>Price</td>
+                  <td>Booking Slots</td>
+                  <td>Modify</td>
+                </tr>
+                <% data.forEach((x)=>{ %>
+                  <tr>
+                    
+                    <td><%=x.doctor%></td>
+                    <td><%=x.specialist%></td>
+                    <td><%=x.yoe%></td>
+                    <td><%=x.cost%></td>
+                    <td><%=x.bookingslot%></td>
+                    <td>
+                      <form>
+                        <button>Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+          
+          
+              </table>
+            </div>
+            <%}%>
+        </div>
+      </div>
+    </div>
+ 
+ </div>
+  </section>
         
   <script src="assets/js/slider.js"></script>
   <!-- ---- jquery Js ---- -->
