@@ -277,7 +277,9 @@ app.post("/login_user",async (req,res)=>{
 })
 
 //--------------------------------About-Contact-explore---------------------------------------
-
+app.get("/developers",async (req,res)=>{
+    res.render("developers")
+})
 //-----------------------------------Hospital Home--------------------------------------------
 
 

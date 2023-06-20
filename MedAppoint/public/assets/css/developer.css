@@ -26,7 +26,7 @@
 .col-md-8 {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    height: 285px;
+    height: fit-content;
     position: absolute;
     left: 220px;
     width: 47.666667%!important;
@@ -63,7 +63,7 @@
     .col {
         padding-left: 10px;
     }
-    .container{
+    .containerss{
         padding-bottom: 250px !important;
     }
   }

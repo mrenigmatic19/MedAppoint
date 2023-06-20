@@ -589,28 +589,42 @@ app.post("/login_user", function _callee9(req, res) {
     }
   }, null, null, [[0, 15]]);
 }); //--------------------------------About-Contact-explore---------------------------------------
-//-----------------------------------Hospital Home--------------------------------------------
 
-app.get("/hospitaldetails", isAuth, function _callee10(req, res) {
+app.get("/developers", function _callee10(req, res) {
   return regeneratorRuntime.async(function _callee10$(_context14) {
     while (1) {
       switch (_context14.prev = _context14.next) {
+        case 0:
+          res.render("developers");
+
+        case 1:
+        case "end":
+          return _context14.stop();
+      }
+    }
+  });
+}); //-----------------------------------Hospital Home--------------------------------------------
+
+app.get("/hospitaldetails", isAuth, function _callee11(req, res) {
+  return regeneratorRuntime.async(function _callee11$(_context15) {
+    while (1) {
+      switch (_context15.prev = _context15.next) {
         case 0:
           console.log(req.session.loginhid);
           res.render("hospitaldetails");
 
         case 2:
         case "end":
-          return _context14.stop();
+          return _context15.stop();
       }
     }
   });
 }); //---------------------------------Sign up Hospital--------------------------------------------
 
-app.get("/signup_hospital", function _callee11(req, res) {
-  return regeneratorRuntime.async(function _callee11$(_context15) {
+app.get("/signup_hospital", function _callee12(req, res) {
+  return regeneratorRuntime.async(function _callee12$(_context16) {
     while (1) {
-      switch (_context15.prev = _context15.next) {
+      switch (_context16.prev = _context16.next) {
         case 0:
           res.render("signup_hospital", {
             message: req.flash('msg')
@@ -618,44 +632,44 @@ app.get("/signup_hospital", function _callee11(req, res) {
 
         case 1:
         case "end":
-          return _context15.stop();
+          return _context16.stop();
       }
     }
   });
 });
-app.post("/signup_hospital", function _callee12(req, res) {
+app.post("/signup_hospital", function _callee13(req, res) {
   var chk, hashpwd, cpass, newhospreg;
-  return regeneratorRuntime.async(function _callee12$(_context16) {
+  return regeneratorRuntime.async(function _callee13$(_context17) {
     while (1) {
-      switch (_context16.prev = _context16.next) {
+      switch (_context17.prev = _context17.next) {
         case 0:
-          _context16.prev = 0;
-          _context16.next = 3;
+          _context17.prev = 0;
+          _context17.next = 3;
           return regeneratorRuntime.awrap(hospinfo.findOne({
             email: req.body.email
           }));
 
         case 3:
-          chk = _context16.sent;
+          chk = _context17.sent;
 
           if (chk) {
-            _context16.next = 22;
+            _context17.next = 22;
             break;
           }
 
-          _context16.next = 7;
+          _context17.next = 7;
           return regeneratorRuntime.awrap(bcrypt.hash(req.body.password, 12));
 
         case 7:
-          hashpwd = _context16.sent;
-          _context16.next = 10;
+          hashpwd = _context17.sent;
+          _context17.next = 10;
           return regeneratorRuntime.awrap(bcrypt.compare(req.body.confirmpassword, hashpwd));
 
         case 10:
-          cpass = _context16.sent;
+          cpass = _context17.sent;
 
           if (!cpass) {
-            _context16.next = 18;
+            _context17.next = 18;
             break;
           }
 
@@ -670,12 +684,12 @@ app.post("/signup_hospital", function _callee12(req, res) {
             description: "hlo",
             address: req.body.address
           });
-          _context16.next = 15;
+          _context17.next = 15;
           return regeneratorRuntime.awrap(hospinfo.insertMany([newhospreg]));
 
         case 15:
           res.redirect("login_hospital");
-          _context16.next = 20;
+          _context17.next = 20;
           break;
 
         case 18:
@@ -683,7 +697,7 @@ app.post("/signup_hospital", function _callee12(req, res) {
           res.redirect("Signup_hospital");
 
         case 20:
-          _context16.next = 24;
+          _context17.next = 24;
           break;
 
         case 22:
@@ -691,27 +705,27 @@ app.post("/signup_hospital", function _callee12(req, res) {
           res.redirect("signup_hospital");
 
         case 24:
-          _context16.next = 30;
+          _context17.next = 30;
           break;
 
         case 26:
-          _context16.prev = 26;
-          _context16.t0 = _context16["catch"](0);
+          _context17.prev = 26;
+          _context17.t0 = _context17["catch"](0);
           req.flash('msg', 'Enter Full details');
           res.redirect("signup_hospital");
 
         case 30:
         case "end":
-          return _context16.stop();
+          return _context17.stop();
       }
     }
   }, null, null, [[0, 26]]);
 }); //-------------------------------Sign Up User--------------------------------------------------
 
-app.get("/signup_user", function _callee13(req, res) {
-  return regeneratorRuntime.async(function _callee13$(_context17) {
+app.get("/signup_user", function _callee14(req, res) {
+  return regeneratorRuntime.async(function _callee14$(_context18) {
     while (1) {
-      switch (_context17.prev = _context17.next) {
+      switch (_context18.prev = _context18.next) {
         case 0:
           res.render("signup_user", {
             message: req.flash('msg')
@@ -719,44 +733,44 @@ app.get("/signup_user", function _callee13(req, res) {
 
         case 1:
         case "end":
-          return _context17.stop();
+          return _context18.stop();
       }
     }
   });
 });
-app.post("/signup_user", function _callee14(req, res) {
+app.post("/signup_user", function _callee15(req, res) {
   var chk, hashpwd, cpass, newuserreg;
-  return regeneratorRuntime.async(function _callee14$(_context18) {
+  return regeneratorRuntime.async(function _callee15$(_context19) {
     while (1) {
-      switch (_context18.prev = _context18.next) {
+      switch (_context19.prev = _context19.next) {
         case 0:
-          _context18.prev = 0;
-          _context18.next = 3;
+          _context19.prev = 0;
+          _context19.next = 3;
           return regeneratorRuntime.awrap(userinfo.findOne({
             email: req.body.email
           }));
 
         case 3:
-          chk = _context18.sent;
+          chk = _context19.sent;
 
           if (chk) {
-            _context18.next = 22;
+            _context19.next = 22;
             break;
           }
 
-          _context18.next = 7;
+          _context19.next = 7;
           return regeneratorRuntime.awrap(bcrypt.hash(req.body.password, 12));
 
         case 7:
-          hashpwd = _context18.sent;
-          _context18.next = 10;
+          hashpwd = _context19.sent;
+          _context19.next = 10;
           return regeneratorRuntime.awrap(bcrypt.compare(req.body.confirmpassword, hashpwd));
 
         case 10:
-          cpass = _context18.sent;
+          cpass = _context19.sent;
 
           if (!cpass) {
-            _context18.next = 18;
+            _context19.next = 18;
             break;
           }
 
@@ -770,12 +784,12 @@ app.post("/signup_user", function _callee14(req, res) {
             password: hashpwd,
             address: req.body.address
           });
-          _context18.next = 15;
+          _context19.next = 15;
           return regeneratorRuntime.awrap(userinfo.insertMany([newuserreg]));
 
         case 15:
           res.redirect("login_user");
-          _context18.next = 20;
+          _context19.next = 20;
           break;
 
         case 18:
@@ -783,7 +797,7 @@ app.post("/signup_user", function _callee14(req, res) {
           res.redirect("signup_user");
 
         case 20:
-          _context18.next = 24;
+          _context19.next = 24;
           break;
 
         case 22:
@@ -791,27 +805,27 @@ app.post("/signup_user", function _callee14(req, res) {
           res.redirect("signup_user");
 
         case 24:
-          _context18.next = 30;
+          _context19.next = 30;
           break;
 
         case 26:
-          _context18.prev = 26;
-          _context18.t0 = _context18["catch"](0);
+          _context19.prev = 26;
+          _context19.t0 = _context19["catch"](0);
           req.flash('msg', 'Enter Full details');
           res.redirect("signup_user");
 
         case 30:
         case "end":
-          return _context18.stop();
+          return _context19.stop();
       }
     }
   }, null, null, [[0, 26]]);
 }); //---------------------------------Equipment--------------------------------------------------
 
-app.get("/equipments", isAuth, function _callee15(req, res) {
-  return regeneratorRuntime.async(function _callee15$(_context19) {
+app.get("/equipments", isAuth, function _callee16(req, res) {
+  return regeneratorRuntime.async(function _callee16$(_context20) {
     while (1) {
-      switch (_context19.prev = _context19.next) {
+      switch (_context20.prev = _context20.next) {
         case 0:
           equipmentinfo.find({
             hospitalid: req.session.loginhid
@@ -826,16 +840,16 @@ app.get("/equipments", isAuth, function _callee15(req, res) {
 
         case 1:
         case "end":
-          return _context19.stop();
+          return _context20.stop();
       }
     }
   });
 });
-app.post("/equipments", function _callee16(req, res) {
+app.post("/equipments", function _callee17(req, res) {
   var newequipmentreg;
-  return regeneratorRuntime.async(function _callee16$(_context20) {
+  return regeneratorRuntime.async(function _callee17$(_context21) {
     while (1) {
-      switch (_context20.prev = _context20.next) {
+      switch (_context21.prev = _context21.next) {
         case 0:
           newequipmentreg = new equipmentinfo({
             hospitalid: req.session.loginhid,
@@ -843,7 +857,7 @@ app.post("/equipments", function _callee16(req, res) {
             type: req.body.type,
             availability: req.body.availability
           });
-          _context20.next = 3;
+          _context21.next = 3;
           return regeneratorRuntime.awrap(equipmentinfo.insertMany([newequipmentreg]));
 
         case 3:
@@ -852,16 +866,16 @@ app.post("/equipments", function _callee16(req, res) {
 
         case 5:
         case "end":
-          return _context20.stop();
+          return _context21.stop();
       }
     }
   });
 }); //---------------------------------IcuBeds---------------------------------------------------
 
-app.get("/icubeds", isAuth, function _callee17(req, res) {
-  return regeneratorRuntime.async(function _callee17$(_context21) {
+app.get("/icubeds", isAuth, function _callee18(req, res) {
+  return regeneratorRuntime.async(function _callee18$(_context22) {
     while (1) {
-      switch (_context21.prev = _context21.next) {
+      switch (_context22.prev = _context22.next) {
         case 0:
           icubedinfo.find({
             hospitalid: req.session.loginhid
@@ -876,23 +890,23 @@ app.get("/icubeds", isAuth, function _callee17(req, res) {
 
         case 1:
         case "end":
-          return _context21.stop();
+          return _context22.stop();
       }
     }
   });
 });
-app.post("/icubeds", function _callee18(req, res) {
+app.post("/icubeds", function _callee19(req, res) {
   var newicubedreg;
-  return regeneratorRuntime.async(function _callee18$(_context22) {
+  return regeneratorRuntime.async(function _callee19$(_context23) {
     while (1) {
-      switch (_context22.prev = _context22.next) {
+      switch (_context23.prev = _context23.next) {
         case 0:
           newicubedreg = new icubedinfo({
             hospitalid: req.session.loginhid,
             cost: req.body.cost,
             beds: req.body.beds
           });
-          _context22.next = 3;
+          _context23.next = 3;
           return regeneratorRuntime.awrap(icubedinfo.insertMany([newicubedreg]));
 
         case 3:
@@ -901,16 +915,16 @@ app.post("/icubeds", function _callee18(req, res) {
 
         case 5:
         case "end":
-          return _context22.stop();
+          return _context23.stop();
       }
     }
   });
 }); //------------------------------Appointment-----------------------------------------------------
 
-app.get("/appointments", isAuth, function _callee19(req, res) {
-  return regeneratorRuntime.async(function _callee19$(_context23) {
+app.get("/appointments", isAuth, function _callee20(req, res) {
+  return regeneratorRuntime.async(function _callee20$(_context24) {
     while (1) {
-      switch (_context23.prev = _context23.next) {
+      switch (_context24.prev = _context24.next) {
         case 0:
           appointmentinfo.find({
             hospitalid: req.session.loginhid
@@ -926,16 +940,16 @@ app.get("/appointments", isAuth, function _callee19(req, res) {
 
         case 1:
         case "end":
-          return _context23.stop();
+          return _context24.stop();
       }
     }
   });
 });
-app.post("/appointments", function _callee20(req, res) {
+app.post("/appointments", function _callee21(req, res) {
   var newappointmentreg;
-  return regeneratorRuntime.async(function _callee20$(_context24) {
+  return regeneratorRuntime.async(function _callee21$(_context25) {
     while (1) {
-      switch (_context24.prev = _context24.next) {
+      switch (_context25.prev = _context25.next) {
         case 0:
           newappointmentreg = new appointmentinfo({
             hospitalid: req.session.loginhid,
@@ -945,7 +959,7 @@ app.post("/appointments", function _callee20(req, res) {
             yoe: req.body.yoe,
             bookingslot: req.body.bookingslot
           });
-          _context24.next = 3;
+          _context25.next = 3;
           return regeneratorRuntime.awrap(appointmentinfo.insertMany([newappointmentreg]));
 
         case 3:
@@ -954,16 +968,16 @@ app.post("/appointments", function _callee20(req, res) {
 
         case 5:
         case "end":
-          return _context24.stop();
+          return _context25.stop();
       }
     }
   });
 }); //-----------------------------------Beds--------------------------------------------------
 
-app.get("/beds", isAuth, function _callee21(req, res) {
-  return regeneratorRuntime.async(function _callee21$(_context25) {
+app.get("/beds", isAuth, function _callee22(req, res) {
+  return regeneratorRuntime.async(function _callee22$(_context26) {
     while (1) {
-      switch (_context25.prev = _context25.next) {
+      switch (_context26.prev = _context26.next) {
         case 0:
           bedinfo.find({
             hospitalid: req.session.loginhid
@@ -978,16 +992,16 @@ app.get("/beds", isAuth, function _callee21(req, res) {
 
         case 1:
         case "end":
-          return _context25.stop();
+          return _context26.stop();
       }
     }
   });
 });
-app.post("/beds", function _callee22(req, res) {
+app.post("/beds", function _callee23(req, res) {
   var newbedreg;
-  return regeneratorRuntime.async(function _callee22$(_context26) {
+  return regeneratorRuntime.async(function _callee23$(_context27) {
     while (1) {
-      switch (_context26.prev = _context26.next) {
+      switch (_context27.prev = _context27.next) {
         case 0:
           newbedreg = new bedinfo({
             hospitalid: req.session.loginhid,
@@ -997,7 +1011,7 @@ app.post("/beds", function _callee22(req, res) {
             disease: req.body.disease,
             cost: req.body.cost
           });
-          _context26.next = 3;
+          _context27.next = 3;
           return regeneratorRuntime.awrap(bedinfo.insertMany([newbedreg]));
 
         case 3:
@@ -1006,16 +1020,16 @@ app.post("/beds", function _callee22(req, res) {
 
         case 5:
         case "end":
-          return _context26.stop();
+          return _context27.stop();
       }
     }
   });
 }); //----------------------------------Surgeries-----------------------------------------------
 
-app.get("/surgeries", isAuth, function _callee23(req, res) {
-  return regeneratorRuntime.async(function _callee23$(_context27) {
+app.get("/surgeries", isAuth, function _callee24(req, res) {
+  return regeneratorRuntime.async(function _callee24$(_context28) {
     while (1) {
-      switch (_context27.prev = _context27.next) {
+      switch (_context28.prev = _context28.next) {
         case 0:
           surgeryinfo.find({
             hospitalid: req.session.loginhid
@@ -1030,16 +1044,16 @@ app.get("/surgeries", isAuth, function _callee23(req, res) {
 
         case 1:
         case "end":
-          return _context27.stop();
+          return _context28.stop();
       }
     }
   });
 });
-app.post("/surgeries", function _callee24(req, res) {
+app.post("/surgeries", function _callee25(req, res) {
   var newsurgeryreg;
-  return regeneratorRuntime.async(function _callee24$(_context28) {
+  return regeneratorRuntime.async(function _callee25$(_context29) {
     while (1) {
-      switch (_context28.prev = _context28.next) {
+      switch (_context29.prev = _context29.next) {
         case 0:
           newsurgeryreg = new surgeryinfo({
             hospitalid: req.session.loginhid,
@@ -1048,7 +1062,7 @@ app.post("/surgeries", function _callee24(req, res) {
             cost: req.body.cost,
             yoe: req.body.yoe
           });
-          _context28.next = 3;
+          _context29.next = 3;
           return regeneratorRuntime.awrap(surgeryinfo.insertMany([newsurgeryreg]));
 
         case 3:
@@ -1057,7 +1071,7 @@ app.post("/surgeries", function _callee24(req, res) {
 
         case 5:
         case "end":
-          return _context28.stop();
+          return _context29.stop();
       }
     }
   });
