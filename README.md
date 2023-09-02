@@ -9,93 +9,115 @@ This is the landing page of our project which consist of many sections like
 
 HOME
 
-![Screenshot (159)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/a00da68a-d0dd-48ed-85e2-62c83c4a2ad8)
+![Screenshot (159)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/e26b2b47-e615-4190-8316-8abffd6ca10c)
+
 
 FEATURES
+![Screenshot (160)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/92ac312e-3a5e-4a35-a768-9d6e099eec69)
 
-![Screenshot (160)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/23bac911-5f50-47aa-9138-2fa48bc04099)
 
 ABOUT
 
-![Screenshot (161)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/0a2614da-bcdb-401d-b8ec-78b3a7de641b)
+![Screenshot (161)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/6009059f-1d83-4d72-aa5c-c43372857626)
+
 
 INNOVATION
 
-![Screenshot (162)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/791c05f7-1c3f-477e-8d5f-523488d8467a)
+![Screenshot (162)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/56239401-f8f7-43f8-8567-da1e5d4c2987)
+
 
 FAQ
 
-![Screenshot (164)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/f7cc8fcf-428c-40b8-b832-f0e985b5351b)
+![Screenshot (164)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/ecc57617-fd9a-4a0e-8704-056b56f1246d)
+
 
 Signup For User And Hospital
 
-![Screenshot (165)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/2c1dd007-4152-498c-9704-fb6023ba2348)
+![Screenshot (165)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/2db05502-33ab-41f0-818f-80d7f0561f91)
+
 
 Signup For User
 
-![Screenshot (166)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/682cba4d-16b4-4c39-808c-ad258004f9b4)
+![Screenshot (166)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/55a2c788-0b81-4376-8010-1bc29719e18c)
+
 
 Login For User
 
-![Screenshot (167)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/fcf05674-5e33-4257-ad9f-c36c189e2d50)
+![Screenshot (167)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/6071e7b3-3958-4e8f-bb22-9845c68d4103)
+
 
 Login Details Of User
 
-![Screenshot (168)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/b037dbdb-a2cc-4976-8a93-625e10b7ab64)
+![Screenshot (168)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/d5c1104a-394a-46a2-ab65-d08be94c432b)
+
 
 Now here user can search the required needs.
 
-![Screenshot (169)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/b47f6b44-ee04-4794-8bbf-3aceec6a0196)
+![Screenshot (169)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/ecda68fd-6dc4-4852-b5e6-0d1eb82e923d)
+
 
 The List of Hospitals which can provide the need of the user.
 
-![WhatsApp Image 2023-09-02 at 12 57 10 PM](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/76469c53-789b-4244-a06e-8a6bd5510701)
+![WhatsApp Image 2023-09-02 at 12 57 10 PM](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/a2586acd-5a46-487e-8fe1-3d53460b1a17)
 
-![WhatsApp Image 2023-09-02 at 12 55 55 PM](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/ca3bbdda-e34b-400f-8c46-5797bef8bca9)
+
+![WhatsApp Image 2023-09-02 at 12 55 55 PM](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/89e3d35b-b9d6-4436-bfe5-4a31a605d0f5)
+
 
 Signup Hospitals
 
-![Screenshot (170)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/08201f22-ad05-4558-85b3-1930e506ce21)
+![Screenshot (170)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/24636e00-7fa2-4271-9155-558830ce2fa1)
+
 
 Signup details of hospitals
 
-![Screenshot (171)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/f5ba2fcb-4d96-4e8d-8b32-0b57fd2c497e)
+![Screenshot (171)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/0d16f0a1-da9d-405d-a061-d560a8fdf5b9)
+
 
 Login of Hospitals
 
-![Screenshot (172)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/756fe3a9-489f-41c7-a076-cda66ba0eda1)
+![Screenshot (172)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/3c743e15-7a62-41c9-8cf0-163bae920f17)
+
 
 Login Details of Hospitals.
 
-![Screenshot (173)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/b0e78874-a7d6-4bcb-a145-4590d98dee16)
+![Screenshot (173)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/efb58d26-ff82-4754-a79c-2127b1cc311b)
+
 
 Registry or updated information in the hospital related to the need of the user.
 
-![Screenshot (174)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/772e76c8-7c7c-422c-b6da-a98a67c2379c)
+![Screenshot (174)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/053087ae-0f11-4f42-b4ea-8b8139a88cc0)
+
 
 ICU Beds Update.
 
-![Screenshot (175)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/a1e489b5-45e6-4668-b56b-686a764f8db7)
+![Screenshot (175)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/e853899c-2517-44e9-986a-a20d0130ecd6)
 
-![Screenshot (176)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/e85fb8c8-5cdc-4ac1-90d7-91d41e935091)
+![Screenshot (176)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/aa216a18-41f4-464e-ab84-8a0216920bb6)
+
+
 
 Beds Details.
 
-![Screenshot (177)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/8afadc38-c66b-497a-8623-cf6d1d0b6d23)
+![Screenshot (177)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/8cefbd2e-40f1-4897-8a5f-0f8009041b00)
+
 
 Equipments Details.
 
-![Screenshot (178)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/cfc4d4dc-2bbc-4d67-bf32-3ccd7aa3d239)
+![Screenshot (178)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/5a5545bd-d772-40cb-b124-d4a90a051ec8)
+
 
 Appointments Details.
 
-![Screenshot (179)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/eb1a2998-0787-41bb-a360-28269f0ca00a)
+![Screenshot (179)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/440e5ae3-1c8a-45b1-b929-51350804220f)
 
 Surgeries Details.
 
-![Screenshot (180)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/cce2dd2e-fde8-46de-ad71-dc35da26eba4)
 
-![Screenshot (181)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/b4150249-038d-432c-b99c-02e6e9ca891a)
+![Screenshot (180)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/7a0baf56-4501-4c01-90fc-5c257d482c9e)
+
+![Screenshot (181)](https://github.com/mrenigmatic19/MedAppoint/assets/119398306/90446ddb-ab99-4e4a-8deb-21e89592d876)
+
 
 Features
 
