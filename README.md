@@ -99,9 +99,9 @@ Surgeries Details.
 
 Features
 
-Our project provides users with reliable and accurate information, including contact details and exact locations of hospitals, to help them make quick and informed decisions during medical emergencies.
-By providing real-time information on the availability of ICU beds, blood, oxygen, vaccinations, and syringes, our platform can help users avoid unnecessary rush and reduce the time taken to find the right hospital for treatment.
-Our platform offers users the convenience of online booking for both ICU beds and doctor appointments, including regular check-ups. Additionally, users can pay a minimal cost for their required medical services and ICU beds. 
-Our platform can significantly reduce the time taken to shift patients from one hospital to another due to a lack of ICU beds or treatment services, thus saving crucial time and improving patient outcomes.
-With our live data display of active patients of specific diseases, the government can conduct surveys easily and take prompt action in case of any abnormal increase in the number of cases of a particular disease, thus helping to prevent and control outbreaks.
+*Our project provides users with reliable and accurate information, including contact details and exact locations of hospitals, to help them make quick and informed decisions during medical emergencies.
+*By providing real-time information on the availability of ICU beds, blood, oxygen, vaccinations, and syringes, our platform can help users avoid unnecessary rush and reduce the time taken to find the right hospital for treatment.
+*Our platform offers users the convenience of online booking for both ICU beds and doctor appointments, including regular check-ups. Additionally, users can pay a minimal cost for their required medical services and ICU beds. 
+*Our platform can significantly reduce the time taken to shift patients from one hospital to another due to a lack of ICU beds or treatment services, thus saving crucial time and improving patient outcomes.
+*With our live data display of active patients of specific diseases, the government can conduct surveys easily and take prompt action in case of any abnormal increase in the number of cases of a particular disease, thus helping to prevent and control outbreaks.
 
