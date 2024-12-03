@@ -245,7 +245,6 @@ app.get("/home",isAuth,async (req,res)=>{
 
 //-------------------------------------Login User--------------------------------------------
 
-
 app.get("/login_user",async (req,res)=>{
     res.render("login_user",{message:req.flash('msg')})
 })
